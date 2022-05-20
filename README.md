@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Crescendo Slots
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## `Description of the project`
 
-In the project directory, you can run:
+As a service provider, I am able to create timeslots during a given week.
+For each timeslots a service provider created, it will appear in all of the organization's google calendar so they can be all up to date.
 
-### `npm start`
+A timeslot will consist of:
+- Day + Time
+- Title
+- Location
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As a service provider, I can create, edit, and delete any given timeslot at any given time if not already happened.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+As a parent, (normal user without authentication), I can see all of the timeslots of the current week, and can see all the others by changing the week (either going backwards to see the past sessions or forward as information of what are the upcoming sessions).
 
-### `npm test`
+As a parent, I can book a timeslot and will need to fill the following constant fields: (Italic fields are optional)
+- Kiddo #1's First Name
+- Kiddo's Last Name
+- Date of Birth of Kiddo #1
+- _Kiddo #2's First Name (if any)_
+- _Date of Birth of Kiddo #2_
+- Parent's full name
+- Parent's email
+- Parent's phone
+- How did you hear about Crescendo (Crescendo Facebook page, Crescendo Instagram page, Google, Friends or family, Other)
+- Is it your first Crescendo Baby Music class? (Yes, No)
+- Did you know that Crescendo has a PODCAST called "Sound All Around" ?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As a parent, I will receive an email and/or SMS confirmation that my timeslot has been booked successfuly.
 
-### `npm run build`
+As a parent, I can sign up for a monthly newsletter to know about crescendo's next events.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `Color Scheme`
+Primary Color: #7E4F9B
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Secondary Color: #EAA052
+### `Useful Links`
+https://crescendobabymusic.com/product/classics-0-2-y-o/
+https://bit.ly/RBTMayJune22
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
