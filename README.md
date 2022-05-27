@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## `Description of the project`
 
-As a service provider, I am able to create timeslots during a given week.
+- [ ] As a service provider, I am able to create timeslots during a given week.
 For each timeslots a service provider created, it will appear in all of the organization's google calendar so they can be all up to date.
 
 A timeslot will consist of:
@@ -12,11 +12,13 @@ A timeslot will consist of:
 - Title
 - Location
 
-As a service provider, I can create, edit, and delete any given timeslot at any given time if not already happened.
+- [ ] As a service provider, I can create, edit, and delete any given timeslot at any given time if not already happened.
 
-As a parent, (normal user without authentication), I can see all of the timeslots of the current week, and can see all the others by changing the week (either going backwards to see the past sessions or forward as information of what are the upcoming sessions).
+- [ ] As a parent, (normal user without authentication), I can see all of the timeslots of the current week, and can see all the others by changing the week (either going backwards to see the past sessions or forward as information of what are the upcoming sessions).
 
-As a parent, I can book a timeslot and will need to fill the following constant fields: (Italic fields are optional)
+- [ ] As a parent, I can book a timeslot and will need to fill the following constant fields: (Italic fields are optional)
+
+
 - Kiddo #1's First Name
 - Kiddo's Last Name
 - Date of Birth of Kiddo #1
@@ -29,9 +31,9 @@ As a parent, I can book a timeslot and will need to fill the following constant 
 - Is it your first Crescendo Baby Music class? (Yes, No)
 - Did you know that Crescendo has a PODCAST called "Sound All Around" ?
 
-As a parent, I will receive an email and/or SMS confirmation that my timeslot has been booked successfuly.
+- [ ] As a parent, I will receive an email and/or SMS confirmation that my timeslot has been booked successfuly.
 
-As a parent, I can sign up for a monthly newsletter to know about crescendo's next events.
+- [ ] As a parent, I can sign up for a monthly newsletter to know about crescendo's next events.
 
 ### `Color Scheme`
 Primary Color: #7E4F9B
@@ -39,6 +41,7 @@ Primary Color: #7E4F9B
 Secondary Color: #EAA052
 ### `Useful Links`
 https://crescendobabymusic.com/product/classics-0-2-y-o/
+
 https://bit.ly/RBTMayJune22
 
 
