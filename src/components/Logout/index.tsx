@@ -1,6 +1,7 @@
 import React from "react";
 import { useCookies } from "react-cookie";
 import { googleLogout } from "@react-oauth/google";
+import "./logout.css"
 
 const Logout = () => {
 
@@ -12,7 +13,7 @@ const Logout = () => {
   }
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
+      <a href="/login" onClick={handleLogout}>Logout</a>
     </div>
   );
 }
