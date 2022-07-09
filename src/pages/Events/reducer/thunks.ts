@@ -1,24 +1,30 @@
-// import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// import { CalendarEventAPI } from '../../../models/CalendarEvent';
-// import {
-//   MedicalContextAPI,
-//   MedicalRecordAPI,
-// } from '../../../models/MedicalFolder';
+import { CalendarEventAPI } from '../../../models/CalendarEvent';
+import { CalendarEvent } from '../../../models/CalendarEvent/types';
 
-// export const loadMedicalContextFromId = createAsyncThunk(
-//   'medicalContext/get',
-//   MedicalContextAPI.get
-// );
+export const getCalendarEvents = createAsyncThunk(
+  'calendar/events/getlist',
+  CalendarEventAPI.getList
+)
 
-// export const loadTodayAppointments = createAsyncThunk(
-//   'todayAppointments/getlist',
-//   (query: { start: Date; end: Date }) => {
-//     return CalendarEventAPI.getList(query.start, query.end);
-//   }
-// );
+export const createCalendarEvent = createAsyncThunk(
+  'calendar/events/create',
+  (event: CalendarEvent) => {
+    return CalendarEventAPI.create(event);
+  }
+)
 
-// export const createMedicalRecord = createAsyncThunk(
-//   'medicalRecord/create',
-//   MedicalRecordAPI.create
-// );
+export const updateCalendarEvent = createAsyncThunk(
+  'calendar/events/update',
+  (event: CalendarEvent) => {
+    return CalendarEventAPI.update(event);
+  }
+)
+
+export const deleteCalendarEvent = createAsyncThunk(
+  'calendar/events/cancel',
+  (event: CalendarEvent) => {
+    return CalendarEventAPI.cancel(event);
+  }
+)

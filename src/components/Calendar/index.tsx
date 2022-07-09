@@ -3,13 +3,29 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { EventSourceInput, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/common/main';
+import {v4 as uuidv4} from 'uuid';
+import { EventSourceInput, DateSelectArg, EventClickArg, EventChangeArg, EventApi } from '@fullcalendar/common/main';
 import CALENDAR from "../../constants/calendar";
+import { CalendarEvent } from '../../models/CalendarEvent/types';
+import { dialog } from '../shared/Dialog';
+import EventDialog from '../EventDialog';
 
-const Calendar = () => {
+interface CalendarProps {
+  events: EventSourceInput;
+  onCreateEvent: (event: CalendarEvent) => void;
+  onUpdateEvent: (id: string) => void;
+  onCancelEvent: (id: string) => void;
+}
+
+const Calendar = ({
+  events,
+  onCreateEvent,
+  onUpdateEvent,
+  onCancelEvent,
+}: CalendarProps) => {
 
   const [, setEvents] = useState<EventApi[]>();
-  const INITIAL_EVENTS: EventSourceInput = [];
+  const [hide, setHide] = useState(true);
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     let title = prompt('Please enter a new title for your event')
@@ -18,21 +34,28 @@ const Calendar = () => {
     calendarApi.unselect() // clear date selection
 
     if (title) {
-      calendarApi.addEvent({
-        id: Math.random().toString(),
+      const event: CalendarEvent = {
+        id: uuidv4(),
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
-      })
+      };
+      onCreateEvent(event);
     }
   }
 
-  const handleEventClick = (clickInfo: EventClickArg) => {
-    // eslint-disable-next-line no-restricted-globals
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove()
-    }
+  const handleEventClick = async (clickInfo: EventClickArg) => {
+    const { event } = clickInfo;
+    const shouldDelete = await dialog(
+      <EventDialog event={event} open={!hide} onHide={setHide} />,
+    );
+    if (shouldDelete) onCancelEvent(event.id);
+  }
+
+  const handleEventUpdate = (changeInfo: EventChangeArg) => {
+    const { event } = changeInfo;
+    onUpdateEvent(event.id);
   }
 
   const handleEvents = (events: EventApi[]) => {
@@ -57,16 +80,17 @@ const Calendar = () => {
       dayMaxEvents={true}
       weekends={true}
       nowIndicator={true}
-      initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+      events={events} // alternatively, use the `events` setting to fetch from a feed
       select={handleDateSelect}
       // eventContent={renderEventContent} // custom render function
       eventClick={handleEventClick}
+      eventChange={handleEventUpdate}
       eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-    /* you can update a remote database when these fire:
-    eventAdd={function(){}}
-    eventChange={function(){}}
-    eventRemove={function(){}}
-    */
+      /* you can update a remote database when these fire:
+        eventAdd={function(){}}
+        eventChange={function(){}}
+        eventRemove={function(){}}
+      */
     />
   );
 }

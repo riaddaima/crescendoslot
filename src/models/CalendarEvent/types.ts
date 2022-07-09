@@ -3,5 +3,5 @@ export interface CalendarEvent {
   title: string,
   start: string,
   end: string,
-  allDay: string
+  allDay: boolean
 }

@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "7bd3cac7-262f-4da0-b701-58131eb8df7d",
+		"name": "CrescendoSlot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14663461"
+	},
+	"item": [
+		{
+			"name": "calendar/events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/calendar/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"calendar",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/calendar/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"calendar",
+								"events"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"allDay\": false,\n        \"end\": \"2022-07-09T11:30:00+01:00\",\n        \"id\": \"8a6e0804-2bd0-4672-b79d-d97027f9071a\",\n        \"start\": \"2022-07-09T10:00:00+01:00\",\n        \"title\": \"oui\"\n    },\n    {\n        \"allDay\": false,\n        \"end\": \"2022-07-10T15:30:00+01:00\",\n        \"id\": \"8a6e0804-2bd0-4672-b79d-d97027f9071b\",\n        \"start\": \"2022-07-10T14:00:00+01:00\",\n        \"title\": \"oui 2\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "calendar/events",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/calendar/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"calendar",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/calendar/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"calendar",
+								"events"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"allDay\": false,\n    \"end\": \"2022-07-11T12:30:00+01:00\",\n    \"id\": \"8a6e0804-2bd0-4672-b79d-d97027f9071b\",\n    \"start\": \"2022-07-11T11:30:00+01:00\",\n    \"title\": \"This was just created.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "calendar/events",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/calendar/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"calendar",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/calendar/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"calendar",
+								"events"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"allDay\": false,\n    \"end\": \"2022-07-09T11:30:00+01:00\",\n    \"id\": \"8a6e0804-2bd0-4672-b79d-d97027f9071a\",\n    \"start\": \"2022-07-09T10:00:00+01:00\",\n    \"title\": \"oui\"\n}"
+				}
+			]
+		},
+		{
+			"name": "calendar/events",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/calendar/events",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"calendar",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/calendar/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"calendar",
+								"events"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "\n{\n    \"allDay\": false,\n    \"end\": \"2022-05-31T10:30:00+01:00\",\n    \"id\": \"8a6e0804-2bd0-4672-b79d-d97027f9071a\",\n    \"start\": \"2022-05-31T11:30:00+01:00\",\n    \"title\": \"oui\"\n}"
+				}
+			]
+		}
+	]
+}

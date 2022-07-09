@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import { COLORS } from '../../colors';
+import { COLORS } from '../../colors';
 
 const theme = createTheme({
   components: {

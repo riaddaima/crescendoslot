@@ -1,46 +1,48 @@
-// import { createAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-// import CalendarEvent from '../../../models/CalendarEvent';
-// import { initialState } from './state';
-// import {
-//   createMedicalRecord,
-//   loadMedicalContextFromId,
-//   loadTodayAppointments,
-// } from './thunks';
+import { initialState } from './state';
+import {
+  getCalendarEvents,
+  createCalendarEvent,
+  updateCalendarEvent,
+  deleteCalendarEvent
+} from './thunks';
 
-// export const setSelectedAppointment = createAction<CalendarEvent | null>(
-//   'SET_SELECTED_APPOIN'
-// );
+export const slice = createSlice({
+  name: 'calendar',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCalendarEvents.fulfilled, (state, action) => {
+        state.events = action.payload;
+      })
+      .addCase(getCalendarEvents.rejected, (state, ) => {
+        state.events = [...state.events];
+      })
+      .addCase(createCalendarEvent.fulfilled, (state, action) => {
+        state.events = [...state.events, action.payload];
+      })
+      .addCase(createCalendarEvent.rejected, (state, ) => {
+        state.events = [...state.events];
+      })
+      .addCase(updateCalendarEvent.fulfilled, (state, action) => {
+        state.events = [
+          ...state.events.filter((event) => event.id !== action.payload.id),
+        ];
+      })
+      .addCase(updateCalendarEvent.rejected, (state, ) => {
+        state.events = [...state.events];
+      })
+      .addCase(deleteCalendarEvent.fulfilled, (state, action) => {
+        state.events = [
+          ...state.events.filter((event) => event.id !== action.payload.id),
+        ];
+      })
+      .addCase(deleteCalendarEvent.rejected, (state, ) => {
+        state.events = [...state.events];
+      })
+  },
+});
 
-// export const slice = createSlice({
-//   name: 'todayAppointments',
-//   initialState,
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(loadTodayAppointments.fulfilled, (state, action) => {
-//         state.appointmentList = action.payload.sort((event1, event2) =>
-//           moment(event1.start).diff(moment(event2.start))
-//         );
-//       })
-//       .addCase(createMedicalRecord.fulfilled, (state, action) => {
-//         if (state.currentContext) {
-//           state.currentContext.records = [
-//             ...state.currentContext.records,
-//             ...action.payload,
-//           ];
-//         }
-//       })
-//       .addCase(createMedicalRecord.rejected, (state) => {
-//         state.currentContextLoading = 'failed';
-//       })
-//       .addCase(loadMedicalContextFromId.fulfilled, (state, action) => {
-//         state.currentContext = action.payload;
-//       })
-//       .addCase(setSelectedAppointment, (state, action) => {
-//         state.selectedAppointment = action.payload;
-//       });
-//   },
-// });
-
-// export default slice.reducer;
+export default slice.reducer;

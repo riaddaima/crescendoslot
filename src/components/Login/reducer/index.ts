@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser } from './thunks';
+import { loginUser } from './thunks';
 import { initialState } from './state';
 
 export const slice = createSlice({
@@ -12,7 +12,7 @@ export const slice = createSlice({
         state.jwt = action.payload;
       })
       .addCase(loginUser.rejected, (state, ) => {
-        state.jwt = '';
+        state.jwt = null;
       })
   },
 });

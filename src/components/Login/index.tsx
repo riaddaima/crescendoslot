@@ -7,6 +7,12 @@ import './login.css';
 import { useAppDispatch } from "../../app/hooks";
 import { loginUser } from './reducer/thunks';
 
+/**
+ * @riaddaima
+ * https://developers.google.com/identity/protocols/oauth2/web-server#creatingcred
+ * https://console.cloud.google.com/apis/credentials
+ */
+
 const clientId = process.env.REACT_APP_CLIENT_ID as string;
 
 const Login = () => {
