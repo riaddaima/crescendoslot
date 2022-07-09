@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Crescendo Logo White Vector](https://user-images.githubusercontent.com/75309623/178104108-55296455-c108-43aa-b25d-89309bc31cde.png)
+
 ## `Description of the project`
 
 - [ ] As a service provider, I am able to create timeslots during a given week.
