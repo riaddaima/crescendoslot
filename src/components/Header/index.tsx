@@ -20,7 +20,7 @@ const Header = () => {
     setProfile(jwtDecode(cookies["jwt-token"]));
   }, [cookies]);
   return (
-    <div className="header">
+    <div>
       <ul>
         <li><Avatar src={profile.picture}/></li>
         <li>{profile.email}</li>
