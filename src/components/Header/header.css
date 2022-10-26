@@ -1,14 +1,10 @@
-.header {
-  padding-top: 85px;
-}
-
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: white;
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
   border-bottom: 1px solid #7e4f9b;
