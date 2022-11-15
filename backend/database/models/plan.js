@@ -1,38 +1,35 @@
 'use strict';
 const { Model } = require('sequelize');
+const EVENTTYPE = require('../../enums/eventTypes');
 module.exports = (sequelize, DataTypes) => {
-  class Profile extends Model {
+  class Plan extends Model {
     static associations(models) {
       // define association here
+      this.packAssociation = this.hasMany(models.pack, {
+        as: 'packs',
+        foreignKey: 'planId'
+      });
     }
   }
-  Profile.init({
+  Plan.init({
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    gender: {
-      type: DataTypes.ENUM('M', 'F'),
-      allowNull: false,
+    eventType: {
+      type: DataTypes.ENUM(EVENTTYPE.REGULAR, EVENTTYPE.SPECIAL, EVENTTYPE.COORPORATE, EVENTTYPE.CONCERT),
+      allowNull: false
     },
-    isSubbedNewsletter: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false
     }
   }, {
     sequelize,
-    modelName: 'Profile',
-    tableName: 'profile',
+    modelName: 'Plan',
+    tableName: 'plan',
     timestamps: true
   })
-  return Profile;
+  return Plan;
 };
