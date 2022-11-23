@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       this.dependentAssociation = this.hasMany(models.Dependent, {
         as: 'dependents',
         foreignKey: 'userId'
-      })
+      });
+      this.profileAssociation = this.hasOne(models.Profile, {
+        as: 'profile',
+        foreignKey: 'userId'
+      });
     }
   }
   User.init({
@@ -45,7 +49,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
     tableName: 'user',
-    timestamps: true
+    timestamps: true,
+    freezeTableName: true
   })
   return User;
 };

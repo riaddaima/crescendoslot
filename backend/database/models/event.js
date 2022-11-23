@@ -60,7 +60,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Event',
     tableName: 'event',
-    timestamps: true
+    timestamps: true,
+    freezeTableName: true
   })
   return Event;
 };

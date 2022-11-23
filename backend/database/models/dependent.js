@@ -46,7 +46,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Dependent',
     tableName: 'dependent',
-    timestamps: true
+    timestamps: true,
+    freezeTableName: true
   })
   return Dependent;
 };
