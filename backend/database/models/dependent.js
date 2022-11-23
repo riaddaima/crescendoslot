@@ -13,6 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -32,14 +41,6 @@ module.exports = (sequelize, DataTypes) => {
     type: {
       type: DataTypes.ENUM(DEPENDENT.SPOUSE, DEPENDENT.KID),
       allowNull: false
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
     }
   }, {
     sequelize,

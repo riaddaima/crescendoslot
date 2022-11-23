@@ -3,4 +3,5 @@ module.exports = {
   SPECIAL: 'special',
   CONCERT: 'concert',
   COORPORATE: 'coorporate',
+  OTHER: 'other'
 }
