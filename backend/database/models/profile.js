@@ -4,8 +4,12 @@ module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
     static associations(models) {
       // define association here
+      this.userAssociation = this.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'user'
+      })
     }
-  }
+  };
   Profile.init({
     id: {
       type: DataTypes.INTEGER,
@@ -22,18 +26,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
+      allowNull: false
     }
   }, {
     sequelize,
     modelName: 'Profile',
     tableName: 'profile',
-    timestamps: true,
-    freezeTableName: true
-  })
+    timestamps: true
+  });
   return Profile;
 };

@@ -4,13 +4,13 @@ module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
     static associations(models) {
       // define association here
-      this.userAssociation = this.belongsToMany(models.User, {
+      this.userAssociation = this.hasMany(models.User, {
         through: models.Booking,
         as: 'users',
         foreignKey: 'eventId'
       });
     }
-  }
+  };
   Event.init({
     id: {
       type: DataTypes.INTEGER,
@@ -60,8 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Event',
     tableName: 'event',
-    timestamps: true,
-    freezeTableName: true
-  })
+    timestamps: true
+  });
   return Event;
 };

@@ -9,7 +9,7 @@ module.exports = {
       },
       gender: {
         type: Sequelize.ENUM('M', 'F'),
-        allowNull: false,
+        allowNull: false
       },
       isSubbedNewsletter: {
         type: Sequelize.BOOLEAN,
@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'User',
+          model: 'user',
           key: 'id'
         }
       },

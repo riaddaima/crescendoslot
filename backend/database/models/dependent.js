@@ -5,8 +5,12 @@ module.exports = (sequelize, DataTypes) => {
   class Dependent extends Model {
     static associations(models) {
       // define association here
+      this.userAssociation = this.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'user'
+      });
     }
-  }
+  };
   Dependent.init({
     id: {
       type: DataTypes.INTEGER,
@@ -16,11 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
+      primaryKey: true
     },
     firstName: {
       type: DataTypes.STRING,
@@ -46,8 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Dependent',
     tableName: 'dependent',
-    timestamps: true,
-    freezeTableName: true
-  })
+    timestamps: true
+  });
   return Dependent;
 };

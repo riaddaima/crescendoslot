@@ -11,12 +11,8 @@ module.exports = (sequelize, DataTypes) => {
   class Plan extends Model {
     static associations(models) {
       // define association here
-      // this.packAssociation = this.hasMany(models.pack, {
-      //   as: 'packs',
-      //   foreignKey: 'planId'
-      // });
     }
-  }
+  };
   Plan.init({
     id: {
       type: DataTypes.INTEGER,
@@ -47,8 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Plan',
     tableName: 'plan',
-    timestamps: true,
-    freezeTableName: true
-  })
+    timestamps: true
+  });
   return Plan;
 };
