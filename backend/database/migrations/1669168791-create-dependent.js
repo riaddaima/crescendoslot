@@ -32,18 +32,10 @@ module.exports = {
       type: {
         type: Sequelize.ENUM(DEPENDENT.SPOUSE, DEPENDENT.KID),
         allowNull: false
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('dependent');
+    await queryInterface.dropTable('dependent', { cascade: true });
   }
 };

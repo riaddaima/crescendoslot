@@ -4,7 +4,6 @@ const ROLE = require('../../enums/roles');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associations(models) {
-      // define association here
       this.eventAssociation = this.hasMany(models.Event, {
         through: models.Booking,
         as: 'events',
@@ -36,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      isEmail: true
     },
     phoneNumber: {
       type: DataTypes.STRING

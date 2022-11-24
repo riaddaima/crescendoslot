@@ -3,7 +3,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
     static associations(models) {
-      // define association here
       this.userAssociation = this.hasMany(models.User, {
         through: models.Booking,
         as: 'users',

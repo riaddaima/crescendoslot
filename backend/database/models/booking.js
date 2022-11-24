@@ -3,7 +3,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
     static associations(models) {
-      // define association here
       this.eventAssociation = this.belongsTo(models.Event, {
         foreignKey: 'eventId',
         as: 'event'

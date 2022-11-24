@@ -18,7 +18,8 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        isEmail: true
       },
       phoneNumber: {
         type: Sequelize.STRING
@@ -26,18 +27,10 @@ module.exports = {
       role: {
         type: Sequelize.ENUM(ROLE.MANAGER, ROLE.PARENT),
         defaultValue: ROLE.PARENT
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user');
+    await queryInterface.dropTable('user', { cascade: true });
   }
 };

@@ -9,7 +9,7 @@ module.exports = {
       },
       gender: {
         type: Sequelize.ENUM('M', 'F'),
-        allowNull: false
+        allowNull: false,
       },
       isSubbedNewsletter: {
         type: Sequelize.BOOLEAN,
@@ -22,18 +22,10 @@ module.exports = {
           model: 'user',
           key: 'id'
         }
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('profile');
+    await queryInterface.dropTable('profile', { cascade: true });
   }
 };

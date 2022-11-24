@@ -27,18 +27,10 @@ module.exports = {
       numKids: {
         type: Sequelize.INTEGER,
         defaultValue: 1,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('plan');
+    await queryInterface.dropTable('plan', { cascade: true });
   }
 };

@@ -3,7 +3,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
     static associations(models) {
-      // define association here
       this.userAssociation = this.belongsTo(models.User, {
         foreignKey: 'userId',
         as: 'user'
@@ -26,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     }
   }, {
     sequelize,

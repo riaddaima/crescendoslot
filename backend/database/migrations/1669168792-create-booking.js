@@ -23,18 +23,10 @@ module.exports = {
       hasCancelled: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('booking');
+    await queryInterface.dropTable('booking', { cascade: true });
   }
 };

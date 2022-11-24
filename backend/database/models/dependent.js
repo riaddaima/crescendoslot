@@ -4,7 +4,6 @@ const DEPENDENT = require('../../enums/dependents');
 module.exports = (sequelize, DataTypes) => {
   class Dependent extends Model {
     static associations(models) {
-      // define association here
       this.userAssociation = this.belongsTo(models.User, {
         foreignKey: 'userId',
         as: 'user'
@@ -20,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     },
     firstName: {
       type: DataTypes.STRING,

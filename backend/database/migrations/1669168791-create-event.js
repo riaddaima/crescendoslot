@@ -45,18 +45,10 @@ module.exports = {
       },
       thumbnail: {
         type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('event');
+    await queryInterface.dropTable('event', { cascade: true });
   }
 };
