@@ -40,10 +40,6 @@ module.exports = (sequelize, DataTypes) => {
        */
       type: DataTypes.DATE,
       allowNull: false
-    },
-    type: {
-      type: DataTypes.ENUM(DEPENDENT.SPOUSE, DEPENDENT.KID),
-      allowNull: false
     }
   }, {
     sequelize,
