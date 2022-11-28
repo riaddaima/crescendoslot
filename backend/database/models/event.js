@@ -55,6 +55,8 @@ module.exports = (sequelize, DataTypes) => {
     thumbnail: {
       type: DataTypes.STRING
     }
+    // What about the evt type
+    
   }, {
     sequelize,
     modelName: 'Event',

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   class Plan extends Model {
     static associations(models) {
       // define association here
+      // for now, plan is not linked to any entity yet
     }
   };
   Plan.init({

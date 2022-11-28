@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'user'
       });
+      this.attendanceAssociation = this.hasMany(models.Attendance, {
+        as: 'attendances',
+        foreignKey: 'dependentId'
+      });
     }
   };
   Dependent.init({
@@ -40,7 +44,8 @@ module.exports = (sequelize, DataTypes) => {
        */
       type: DataTypes.DATE,
       allowNull: false
-    }
+    }, 
+
   }, {
     sequelize,
     modelName: 'Dependent',
