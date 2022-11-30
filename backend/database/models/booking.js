@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
     hasCancelled: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    isWaitlist:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     sequelize,

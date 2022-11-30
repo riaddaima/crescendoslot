@@ -1,4 +1,7 @@
 'use strict';
+
+const { sequelize } = require("../models");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('booking', {
@@ -22,6 +25,10 @@ module.exports = {
       },
       hasCancelled: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false
+      }, 
+      isWaitlist: {
+        type: sequelize.BOOLEAN,
         defaultValue: false
       }
     });
