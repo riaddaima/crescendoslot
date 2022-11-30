@@ -45,6 +45,8 @@ const Events = () => {
       <Box sx={{p: 3}}>
         <Calendar
           events={eventsCopy}
+          originalEvents={events}
+          setEvents={setEventsCopy}
           onCreateEvent={onCreateEvent}
           onUpdateEvent={onUpdateEvent}
           onCancelEvent={onCancelEvent}

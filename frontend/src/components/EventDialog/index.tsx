@@ -26,7 +26,7 @@ const EventDialog = ({ event, open, onHide, ...props }: EventDialogProps) => (
     container={() => document.getElementById('mainContent')}
     {...props}
   >
-    <DialogTitle id="form-dialog-title">Availability</DialogTitle>
+    <DialogTitle id="form-dialog-title">Event Information</DialogTitle>
     <DialogContent>
       <Grid container spacing={2}>
         <div></div>
