@@ -49,17 +49,26 @@ const Events = () => {
     <div>
       <Header />
       <Box sx={{ p: 3 }}>
-        <Box display="flex" justifyContent="space-between">
+        <Box display="flex" justifyContent="space-between" maxHeight={605}>
           {/* CALENDAR SIDEBAR */}
-          <Box sx={{ flex: "1 1 20%", p: "15px", borderRadius: "4px", border: `1px solid ${COLORS.primaryColor} `}}>
+          <Box sx={{ flex: "1 1 20%", p: "15px", borderRadius: "4px", border: `1px solid ${COLORS.primaryColor} ` }}>
             <Typography variant="h5">Selected Events</Typography>
-            <List>
+            <br></br>
+            <List
+              sx={{
+                overflow: 'auto',
+                maxHeight: '90%',
+                '& ul': { padding: 0 },
+              }}
+              subheader={<li />}
+            >
               {events.map((event) => (
                 <ListItem
                   key={event.id}
                   sx={{
                     backgroundColor: COLORS.calendarEventColor,
                     margin: "10px 0",
+                    width: "95%",
                     borderRadius: "2px",
                   }}
                 >
@@ -82,7 +91,6 @@ const Events = () => {
               ))}
             </List>
           </Box>
-
           <Box flex="1 1 100%" ml="15px">
             <Calendar
               events={eventsCopy}
@@ -94,7 +102,6 @@ const Events = () => {
             />
           </Box>
         </Box>
-
       </Box>
     </div>
   );
