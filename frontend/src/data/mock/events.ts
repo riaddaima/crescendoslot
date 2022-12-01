@@ -57,4 +57,46 @@ export const events: CalendarEventResponse[] = [{
     thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/Untitled-design-3-600x698.png',
     booked: true
   },
+}, {
+  id: '5',
+  title: 'Big Kids',
+  start: moment().day('Friday').hours(11).minutes(15).seconds(0).milliseconds(0).toDate(),
+  end: moment().day('Friday').hours(11).minutes(15).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
+  extendedProps: {
+    capacity: 12,
+    minAge: 2,
+    maxAge: 4,
+    venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
+    description: 'Lorem Ipsum Dolor',
+    thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg',
+    booked: false
+  }
+}, {
+  id: '6',
+  title: 'Big Kids',
+  start: moment().day('Friday').hours(12).minutes(0).seconds(0).milliseconds(0).toDate(),
+  end: moment().day('Friday').hours(12).minutes(0).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
+  extendedProps: {
+    capacity: 12,
+    minAge: 2,
+    maxAge: 4,
+    venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
+    description: 'Lorem Ipsum Dolor',
+    thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg',
+    booked: false
+  }
+}, {
+  id: '7',
+  title: 'Big Kids',
+  start: moment().day('Friday').hours(12).minutes(45).seconds(0).milliseconds(0).toDate(),
+  end: moment().day('Friday').hours(12).minutes(45).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
+  extendedProps: {
+    capacity: 12,
+    minAge: 2,
+    maxAge: 4,
+    venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
+    description: 'Lorem Ipsum Dolor',
+    thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg',
+    booked: false
+  }
 }];

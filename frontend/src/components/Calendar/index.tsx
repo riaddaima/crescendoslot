@@ -36,9 +36,9 @@ const Calendar = ({
      * @riaddaima
      * Here is the logic of creating a new event using a manager account.
      */
-    let title = prompt('Please enter a new title for your event')
-    let calendarApi = selectInfo.view.calendar
-
+    let title = prompt('Please enter a new title for your event');
+    let calendarApi = selectInfo.view.calendar;
+    console.log('Title of event', title);
     calendarApi.unselect() // clear date selection
 
     // if (title) {
