@@ -8,6 +8,8 @@ import CALENDAR from "../../constants/calendar";
 import { CalendarEvent } from '../../models/CalendarEvent/types';
 import { dialog } from '../shared/Dialog';
 import EventDialog from '../EventDialog';
+import { useAppDispatch } from '../../app/hooks';
+import { slice as selectedEventApplier } from '../selectedEvents/reducer';
 
 interface CalendarProps {
   events: EventSourceInput;
@@ -26,7 +28,7 @@ const Calendar = ({
   onUpdateEvent,
   onCancelEvent,
 }: CalendarProps) => {
-
+  const dispatch = useAppDispatch();
   const [hide, setHide] = useState(true);
   const [showBooked, setShowBooked] = useState(false);
 
@@ -55,10 +57,11 @@ const Calendar = ({
 
   const handleEventClick = async (clickInfo: EventClickArg) => {
     const { event } = clickInfo;
-    const shouldDelete = await dialog(
-      <EventDialog event={event} open={!hide} onHide={setHide} />,
-    );
-    if (shouldDelete) onCancelEvent(event.id);
+    dispatch(selectedEventApplier.actions.addEvent(event));
+    // const shouldDelete = await dialog(
+    //   <EventDialog event={event} open={!hide} onHide={setHide} />,
+    // );
+    // if (shouldDelete) onCancelEvent(event.id);
   }
 
   const handleEventUpdate = (changeInfo: EventChangeArg) => {
@@ -103,6 +106,7 @@ const Calendar = ({
       // eventContent={renderEventContent} // custom render function
       eventClick={handleEventClick}
       eventChange={handleEventUpdate}
+      slotDuration='00:20'
       // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
       /* you can update a remote database when these fire:
         eventAdd={function(){}}

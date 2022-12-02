@@ -2,12 +2,14 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 
 import login from '../components/Login/reducer';
 import calendar from '../pages/Events/reducer';
+import selectedEvents from '../components/selectedEvents/reducer';
 import { injectStore } from '../helpers/API';
 
 export const store = configureStore({
   reducer: {
     login,
     calendar,
+    selectedEvents,
   },
 });
 
