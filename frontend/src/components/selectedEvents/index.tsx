@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, List, ListItem, ListItemText, Typography } from '@mui/material';
-
-import { EventApi, formatDate } from '@fullcalendar/react';
+import { Box, List, ListItem, ListItemText, Typography, IconButton } from '@mui/material';
+import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+import { EventApi } from '@fullcalendar/react';
 
 import { COLORS } from '../../colors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectedEventsSelector } from './reducer/selector';
 import { slice as selectedEventApplier } from './reducer';
+import moment from 'moment-timezone';
 
 const SelectedEvents = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +41,11 @@ const SelectedEvents = () => {
                     width: "95%",
                     borderRadius: "2px",
                   }}
-                  onClick={() => handleUnselectEvent(event)}
+                  secondaryAction={
+                    <IconButton edge="end" aria-label="delete" onClick={() => handleUnselectEvent(event)}>
+                      <DeleteTwoToneIcon sx={{ color: 'white' }} />
+                    </IconButton>
+                  }
                 >
                   <ListItemText
                     sx={{
@@ -49,11 +54,7 @@ const SelectedEvents = () => {
                     primary={event.title}
                     secondary={
                       <Typography>
-                        {formatDate(event.start, {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
+                        {moment(event.start).format("ddd MM/DD hh:mm A")}
                       </Typography>
                     }
                   />

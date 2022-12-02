@@ -13,9 +13,11 @@ import {
   updateCalendarEvent,
   deleteCalendarEvent,
 } from './reducer/thunks';
+import { selectedEventsSelector } from '../../components/selectedEvents/reducer/selector';
 
 const Events = () => {
   const dispatch = useAppDispatch();
+  const selectedEvents = useAppSelector(selectedEventsSelector);
   const events = useAppSelector(calendarEventsSelector);
   const [eventsCopy, setEventsCopy] = useState(events);
 
@@ -46,7 +48,7 @@ const Events = () => {
       <Header />
       <Box sx={{ p: 3 }}>
         <Box display="flex" justifyContent="space-between" maxHeight={845}>
-          <SelectedEvents />
+          {selectedEvents.events.length !== 0 ? <SelectedEvents /> : <></>}
           <Box flex="1 1 100%" ml="15px">
             <Calendar
               events={eventsCopy}
