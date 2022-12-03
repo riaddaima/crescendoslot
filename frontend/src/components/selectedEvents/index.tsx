@@ -54,7 +54,7 @@ const SelectedEvents = () => {
                     primary={event.title}
                     secondary={
                       <Typography>
-                        {moment(event.start).format("ddd MM/DD hh:mm A")}
+                        {moment(event.start).format("ddd MM/DD [at] hh:mm A")}
                       </Typography>
                     }
                   />
