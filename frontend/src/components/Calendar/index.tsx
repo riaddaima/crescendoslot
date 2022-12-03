@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
+import React, { Dispatch, Fragment, SetStateAction, useState } from 'react';
+import FullCalendar, { CustomContentGenerator, EventContentArg, EventHoveringArg } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -10,6 +10,8 @@ import { dialog } from '../shared/Dialog';
 import EventDialog from '../EventDialog';
 import { useAppDispatch } from '../../app/hooks';
 import { slice as selectedEventApplier } from '../selectedEvents/reducer';
+import { Button, Card, CardActions, CardContent, Tooltip, Typography } from '@mui/material';
+import { COLORS } from '../../colors';
 
 interface CalendarProps {
   events: EventSourceInput;
@@ -69,6 +71,59 @@ const Calendar = ({
     onUpdateEvent(event.id);
   }
 
+
+  function renderInnerContent(innerProps: any) {
+    return (
+      <div className='fc-event-main-frame'>
+        {innerProps.timeText &&
+          <div className='fc-event-time'>{innerProps.timeText}</div>
+        }
+        <div className='fc-event-title-container'>
+          <div className='fc-event-title fc-sticky'>
+            {innerProps.event.title || <Fragment>&nbsp;</Fragment>}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const eventCardInformation = (
+    <Fragment>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Word of the Day
+        </Typography>
+        <Typography variant="h5" component="div">
+          benevlent
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          adjective
+        </Typography>
+        <Typography variant="body2">
+          well meaning and kindly.
+          <br />
+          {'"a benevolent smile"'}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Fragment>
+  );
+
+  const toolTipEventInfo = (arg: CustomContentGenerator<EventContentArg>) => {
+    return (
+      <Tooltip componentsProps={{
+        tooltip: {
+          sx: {
+            backgroundColor: COLORS.calendarEventColor,
+            padding: 1
+          }
+        }
+      }} arrow title={<Card>{eventCardInformation}</Card>}>{renderInnerContent(arg)}</Tooltip>
+    )
+  }
+
   return (
     <FullCalendar
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -79,7 +134,7 @@ const Calendar = ({
       }}
       customButtons={{
         switchBooked: {
-          text: showBooked ?  'Show all events' : 'Show booked events',
+          text: showBooked ? 'Show all events' : 'Show booked events',
           click: () => {
             if (showBooked) {
               setEvents(originalEvents as CalendarEvent[]);
@@ -107,12 +162,14 @@ const Calendar = ({
       eventClick={handleEventClick}
       eventChange={handleEventUpdate}
       slotDuration='00:20'
-      // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-      /* you can update a remote database when these fire:
-        eventAdd={function(){}}
-        eventChange={function(){}}
-        eventRemove={function(){}}
-      */
+      // eventMouseEnter={toolTipEventInfo}
+      eventContent={toolTipEventInfo}
+    // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
+    /* you can update a remote database when these fire:
+      eventAdd={function(){}}
+      eventChange={function(){}}
+      eventRemove={function(){}}
+    */
     />
   );
 }
