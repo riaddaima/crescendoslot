@@ -4,8 +4,10 @@ import './App.css';
 import Login from './components/Login';
 import WithAuth from './components/ProtectedRoute/WithAuth';
 
+
 const Home = React.lazy(() => import('./pages/Home'));
 const Events = React.lazy(() => import('./pages/Events'));
+const Dependents = React.lazy(() => import('./pages/Dependents'));
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
             </WithAuth>
             <WithAuth exact path="/">
               <Events />
+            </WithAuth>
+            <WithAuth exact path="/dependents">
+              <Dependents />
             </WithAuth>
             <Route path="/login">
               <Login />
