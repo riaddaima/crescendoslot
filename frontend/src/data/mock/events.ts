@@ -11,7 +11,7 @@ export const events: CalendarEventResponse[] = [{
     minAge: 2,
     maxAge: 4,
     venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
-    description: 'Lorem Ipsum Dolor',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu libero, porta eget elit in, sollicitudin luctus tortor. Donec egestas tortor mi, quis interdum sem varius sed.',
     thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg',
     booked: false
   }
@@ -25,7 +25,7 @@ export const events: CalendarEventResponse[] = [{
     minAge: 0,
     maxAge: 2,
     venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
-    description: 'Lorem Ipsum Dolor',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu libero, porta eget elit in, sollicitudin luctus tortor. Donec egestas tortor mi, quis interdum sem varius sed.',
     thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/mixed-age-e1618426540331.png',
     booked: true
   }
@@ -39,7 +39,7 @@ export const events: CalendarEventResponse[] = [{
     minAge: 1,
     maxAge: 6,
     venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
-    description: 'Lorem Ipsum Dolor',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu libero, porta eget elit in, sollicitudin luctus tortor. Donec egestas tortor mi, quis interdum sem varius sed.',
     thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/Untitled-design-3-600x698.png',
     booked: false
   }
@@ -53,8 +53,8 @@ export const events: CalendarEventResponse[] = [{
     minAge: 1,
     maxAge: 6,
     venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
-    description: 'Lorem Ipsum Dolor',
-    thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/Untitled-design-3-600x698.png',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu libero, porta eget elit in, sollicitudin luctus tortor. Donec egestas tortor mi, quis interdum sem varius sed.',
+    thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/musicmingle-600x698.jpg',
     booked: true
   },
 }, {
@@ -67,7 +67,7 @@ export const events: CalendarEventResponse[] = [{
     minAge: 2,
     maxAge: 4,
     venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
-    description: 'Lorem Ipsum Dolor',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu libero, porta eget elit in, sollicitudin luctus tortor. Donec egestas tortor mi, quis interdum sem varius sed.',
     thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg',
     booked: false
   }
@@ -81,7 +81,7 @@ export const events: CalendarEventResponse[] = [{
     minAge: 2,
     maxAge: 4,
     venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
-    description: 'Lorem Ipsum Dolor',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu libero, porta eget elit in, sollicitudin luctus tortor. Donec egestas tortor mi, quis interdum sem varius sed.',
     thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg',
     booked: false
   }
@@ -95,7 +95,7 @@ export const events: CalendarEventResponse[] = [{
     minAge: 2,
     maxAge: 4,
     venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
-    description: 'Lorem Ipsum Dolor',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu libero, porta eget elit in, sollicitudin luctus tortor. Donec egestas tortor mi, quis interdum sem varius sed.',
     thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg',
     booked: false
   }

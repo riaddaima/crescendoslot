@@ -10,8 +10,13 @@ import { dialog } from '../shared/Dialog';
 import EventDialog from '../EventDialog';
 import { useAppDispatch } from '../../app/hooks';
 import { slice as selectedEventApplier } from '../selectedEvents/reducer';
-import { Button, Card, CardActions, CardContent, Tooltip, Typography } from '@mui/material';
+import { Button, Card, CardActions, CardContent, Tooltip, Typography, CardMedia, IconButton } from '@mui/material';
 import { COLORS } from '../../colors';
+import { EventApi } from '@fullcalendar/core';
+import moment from 'moment-timezone';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
 interface CalendarProps {
   events: EventSourceInput;
@@ -87,31 +92,51 @@ const Calendar = ({
     );
   }
 
-  const eventCardInformation = (
-    <Fragment>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="div">
-          benevlent
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Fragment>
-  );
+  const eventCardInformation = (event: EventApi) => {
+    console.log(event.start, event.end);
+    return (
+      <Fragment>
+        <CardMedia
+          component="img"
+          height="140"
+          src={"https://picsum.photos/690/360"}
+          alt="event thumbnail"
+          sx={{ height: 180, width: 345, objectFit: "contain" }}
+        />
+        <CardContent>
+          {/* December 1 @ 12:00 am - 6:00 am */}
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            {/* <IconButton edge="end" aria-label="time" sx={{ padding: 0, marginRight: 1/2 }}>
+              <AccessTimeIcon sx={{ fontSize: 16, color: 'black' }} />
+            </IconButton> */}
+            {moment(event.start).format(" MMMM D [@] hh:mm A [-] ") + moment(event.end).format("hh:mm A")}
+          </Typography>
+          <Typography variant="h5" component="div">
+            <IconButton edge="end" aria-label="time" sx={{ padding: 0, marginRight: 1/2 }}>
+              <MusicNoteIcon sx={{ fontSize: 16, color: 'black' }} />
+            </IconButton>
+            {event.title}
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            {event.extendedProps.description}
+          </Typography>
+          <Typography variant="body2">
+            <IconButton edge="end" aria-label="venue" sx={{ padding: 0, marginRight: 1 / 2 }}>
+              <LocationOnOutlinedIcon sx={{ fontSize: 20 }} />
+            </IconButton>
+            {event.extendedProps.venue}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">{event.extendedProps.minAge} - {event.extendedProps.maxAge} years old</Button>
+          <Button size="small" color="error">Currently: 5/{event.extendedProps.capacity}</Button>
+        </CardActions>
+      </Fragment>
+    );
+  }
 
-  const toolTipEventInfo = (arg: CustomContentGenerator<EventContentArg>) => {
+  const toolTipEventInfo = (arg: EventContentArg) => {
+    const { event } = arg;
     return (
       <Tooltip componentsProps={{
         tooltip: {
@@ -120,7 +145,7 @@ const Calendar = ({
             padding: 1
           }
         }
-      }} arrow title={<Card>{eventCardInformation}</Card>}>{renderInnerContent(arg)}</Tooltip>
+      }} arrow title={<Card>{eventCardInformation(event)}</Card>}>{renderInnerContent(arg)}</Tooltip>
     )
   }
 
