@@ -1,20 +1,17 @@
 import React, { Dispatch, Fragment, SetStateAction, useState } from 'react';
-import FullCalendar, { CustomContentGenerator, EventContentArg, EventHoveringArg } from '@fullcalendar/react';
+import FullCalendar, { EventContentArg } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventSourceInput, DateSelectArg, EventClickArg, EventChangeArg } from '@fullcalendar/common/main';
 import CALENDAR from "../../constants/calendar";
 import { CalendarEvent } from '../../models/CalendarEvent/types';
-import { dialog } from '../shared/Dialog';
-import EventDialog from '../EventDialog';
 import { useAppDispatch } from '../../app/hooks';
 import { slice as selectedEventApplier } from '../selectedEvents/reducer';
-import { Button, Card, CardActions, CardContent, Tooltip, Typography, CardMedia, IconButton } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardMedia, Tooltip, Typography, IconButton } from '@mui/material';
 import { COLORS } from '../../colors';
 import { EventApi } from '@fullcalendar/core';
 import moment from 'moment-timezone';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
@@ -36,7 +33,6 @@ const Calendar = ({
   onCancelEvent,
 }: CalendarProps) => {
   const dispatch = useAppDispatch();
-  const [hide, setHide] = useState(true);
   const [showBooked, setShowBooked] = useState(false);
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
