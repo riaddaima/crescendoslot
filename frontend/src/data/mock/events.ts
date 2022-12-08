@@ -7,6 +7,7 @@ export const events: CalendarEventResponse[] = [{
   start: moment().day('Saturday').hours(11).minutes(15).seconds(0).milliseconds(0).toDate(),
   end: moment().day('Saturday').hours(11).minutes(15).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
   extendedProps: {
+    currentCapacity: 5,
     capacity: 12,
     minAge: 2,
     maxAge: 4,
@@ -21,6 +22,7 @@ export const events: CalendarEventResponse[] = [{
   start: moment().day('Saturday').hours(10).minutes(0).seconds(0).milliseconds(0).toDate(),
   end: moment().day('Saturday').hours(10).minutes(0).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
   extendedProps: {
+    currentCapacity: 4,
     capacity: 11,
     minAge: 0,
     maxAge: 2,
@@ -35,6 +37,7 @@ export const events: CalendarEventResponse[] = [{
   start: moment().day('Wednesday').hours(17).minutes(30).seconds(0).milliseconds(0).toDate(),
   end: moment().day('Wednesday').hours(17).minutes(30).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
   extendedProps: {
+    currentCapacity: 6,
     capacity: 12,
     minAge: 1,
     maxAge: 6,
@@ -49,6 +52,7 @@ export const events: CalendarEventResponse[] = [{
   start: moment().day('Tuesday').hours(10).minutes(30).seconds(0).milliseconds(0).toDate(),
   end: moment().day('Tuesday').hours(10).minutes(30).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
   extendedProps: {
+    currentCapacity: 11,
     capacity: 12,
     minAge: 1,
     maxAge: 6,
@@ -63,6 +67,7 @@ export const events: CalendarEventResponse[] = [{
   start: moment().day('Friday').hours(11).minutes(15).seconds(0).milliseconds(0).toDate(),
   end: moment().day('Friday').hours(11).minutes(15).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
   extendedProps: {
+    currentCapacity: 12,
     capacity: 12,
     minAge: 2,
     maxAge: 4,
@@ -77,6 +82,7 @@ export const events: CalendarEventResponse[] = [{
   start: moment().day('Friday').hours(12).minutes(0).seconds(0).milliseconds(0).toDate(),
   end: moment().day('Friday').hours(12).minutes(0).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
   extendedProps: {
+    currentCapacity: 10,
     capacity: 12,
     minAge: 2,
     maxAge: 4,
@@ -91,6 +97,7 @@ export const events: CalendarEventResponse[] = [{
   start: moment().day('Friday').hours(12).minutes(45).seconds(0).milliseconds(0).toDate(),
   end: moment().day('Friday').hours(12).minutes(45).seconds(0).milliseconds(0).add('45', 'minutes').toDate(),
   extendedProps: {
+    currentCapacity: 5,
     capacity: 12,
     minAge: 2,
     maxAge: 4,

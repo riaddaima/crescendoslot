@@ -4,6 +4,7 @@ export interface CalendarEvent {
   start: Date,
   end: Date,
   extendedProps: {
+    currentCapacity: number,
     capacity: number,
     minAge: number,
     maxAge: number,

@@ -129,7 +129,7 @@ const Calendar = ({
         </CardContent>
         <CardActions>
           <Button size="small">{event.extendedProps.minAge} - {event.extendedProps.maxAge} years old</Button>
-          <Button size="small" color="error">Currently: 5/{event.extendedProps.capacity}</Button>
+          <Button size="small" color="error">Currently: {event.extendedProps.currentCapacity}/{event.extendedProps.capacity}</Button>
         </CardActions>
       </Fragment>
     );
