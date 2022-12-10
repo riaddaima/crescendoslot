@@ -1,21 +1,21 @@
 export interface Profile {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   avatar: string;
   gender: string;
-  phonenumber: string;
+  phoneNumber: string;
   isSubbedNewsletter: boolean;
   role: 'Manager' | 'Parent';
 }
 
 export const initialState: Profile = {
-  firstname: '',
-  lastname: '',
+  firstName: '',
+  lastName: '',
   email: '',
   avatar: '',
   gender: '',
-  phonenumber: '',
+  phoneNumber: '',
   isSubbedNewsletter: false,
   role: 'Parent'
 };

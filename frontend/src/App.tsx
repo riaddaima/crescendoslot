@@ -6,6 +6,7 @@ import WithAuth from './components/ProtectedRoute/WithAuth';
 
 const Home = React.lazy(() => import('./pages/Home'));
 const Events = React.lazy(() => import('./pages/Events'));
+const Profile = React.lazy(() => import('./pages/Profile'));
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
             </WithAuth>
             <WithAuth exact path="/">
               <Events />
+            </WithAuth>
+            <WithAuth exact path="/profile">
+              <Profile />
             </WithAuth>
             <Route path="/login">
               <Login />
