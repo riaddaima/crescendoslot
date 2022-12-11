@@ -1,21 +1,12 @@
-export interface Profile {
-  firstName: string;
-  lastName: string;
-  email: string;
-  avatar: string;
-  gender: string;
-  phoneNumber: string;
-  isSubbedNewsletter: boolean;
-  role: 'Manager' | 'Parent';
-}
+import { Profile } from '../../../interfaces/Profile';
 
 export const initialState: Profile = {
   firstName: '',
   lastName: '',
   email: '',
   avatar: '',
-  gender: '',
+  gender: 'Male',
   phoneNumber: '',
-  isSubbedNewsletter: false,
+  isSubbedNewsletter: true,
   role: 'Parent'
 };

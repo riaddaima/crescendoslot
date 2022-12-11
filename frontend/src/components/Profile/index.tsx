@@ -1,9 +1,10 @@
 import React from 'react';
-import { TextField, Box, Avatar, Button } from '@mui/material';
+import { TextField, Box, Avatar, Button, InputLabel, Select, MenuItem, FormControl, FormControlLabel, Switch, Typography } from '@mui/material';
 import { COLORS } from '../../colors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { profileSelector } from './reducer/selector';
-import { Profile as ProfileI } from './reducer/state';
+// import { Profile as ProfileI } from './reducer/state';
+import { Profile as ProfileI } from '../../interfaces/Profile';
 import { slice as profileApplier } from './reducer';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Formik } from "formik";
@@ -23,7 +24,7 @@ const Profile = () => {
   };
 
   return (
-    <Box m="20px" p={2} sx={{ border: `1px solid ${COLORS.primaryColor}`, transform: isNonMobile ? 'translate(80%)' : undefined }} width={ isNonMobile ? '35%' : undefined}>
+    <Box m="20px" p={2} sx={{ border: `1px solid ${COLORS.primaryColor}`, transform: isNonMobile ? 'translate(80%)' : undefined }} width={isNonMobile ? '35%' : undefined}>
       <Formik
         onSubmit={handleFormSubmit}
         initialValues={profile}
@@ -58,6 +59,7 @@ const Profile = () => {
                 error={!!touched.firstName && !!errors.firstName}
                 helperText={touched.firstName && errors.firstName}
                 sx={{ gridColumn: "span 2" }}
+                disabled
               />
               <TextField
                 fullWidth
@@ -71,6 +73,7 @@ const Profile = () => {
                 error={!!touched.lastName && !!errors.lastName}
                 helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
+                disabled
               />
               <TextField
                 fullWidth
@@ -84,19 +87,47 @@ const Profile = () => {
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
                 sx={{ gridColumn: "span 4" }}
+                disabled
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Contact Number"
+                label="Phone Number"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.phoneNumber}
-                name="contact"
+                name="phoneNumber"
                 error={!!touched.phoneNumber && !!errors.phoneNumber}
                 helperText={touched.phoneNumber && errors.phoneNumber}
                 sx={{ gridColumn: "span 4" }}
+                placeholder="+212600000000"
+              />
+              <FormControl fullWidth sx={{ gridColumn: "span 2", textAlign: 'left' }}>
+                <InputLabel>Gender</InputLabel>
+                <Select
+                  fullWidth
+                  value={values.gender}
+                  label="gender"
+                  name="gender"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={'Male'}>Male</MenuItem>
+                  <MenuItem value={'Female'}>Female</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl fullWidth sx={{ gridColumn: "span 2" }}>
+                <FormControlLabel control={<Switch name='isSubbedNewsletter' onChange={handleChange} checked={values.isSubbedNewsletter} />} label="Sign up for a monthly newsletter!" />
+              </FormControl>
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Role"
+                value={values.role}
+                name="role"
+                sx={{ gridColumn: "span 4" }}
+                disabled
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
@@ -118,7 +149,7 @@ const checkoutSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
-  contact: yup
+  phoneNumber: yup
     .string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("required"),

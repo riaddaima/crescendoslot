@@ -1,12 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initialState, Profile } from './state';
+import { createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
+import { initialState } from './state';
+import { Profile } from '../../../interfaces/Profile';
 
-export const slice = createSlice({
+export const slice: Slice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
     setProfile: (state, action: PayloadAction<Profile>) => {
-      state = action.payload;
+      state = Object.assign(state, action.payload);
     }
   }
 })
