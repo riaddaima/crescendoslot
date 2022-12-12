@@ -8,5 +8,6 @@ export const initialState: Profile = {
   gender: 'Male',
   phoneNumber: '',
   isSubbedNewsletter: true,
-  role: 'Parent'
+  role: 'Parent',
+  newUser: true
 };

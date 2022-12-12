@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { CredentialResponse } from '../../interfaces/CredentialResponse';
@@ -21,11 +21,12 @@ const clientId = process.env.REACT_APP_CLIENT_ID as string;
 const Login = () => {
 
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [, setCookie] = useCookies(['jwt-token']);
   const profile = useAppSelector(profileSelector);
 
-  const redirectToHome = () => history.push('/');
+  const redirectToHome = () => navigate('/');
+  const redirectToCompleteProfile = () => navigate('/complete-profile');
 
   const onSuccess = (res: CredentialResponse) => {
     const { credential } = res;
@@ -56,6 +57,7 @@ const Login = () => {
         email: decodedjwt.email,
         avatar: decodedjwt.picture,
       }));
+      if (profile.newUser) redirectToCompleteProfile();
       redirectToHome();
     }
   };

@@ -19,7 +19,6 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
       <h1>Welcome Home, {profile.firstName}</h1>
       <br />
       <Stack

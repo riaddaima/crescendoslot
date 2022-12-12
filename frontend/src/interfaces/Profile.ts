@@ -7,4 +7,5 @@ export interface Profile {
   phoneNumber: string;
   isSubbedNewsletter: boolean;
   role: 'Manager' | 'Parent';
+  newUser: boolean;
 }

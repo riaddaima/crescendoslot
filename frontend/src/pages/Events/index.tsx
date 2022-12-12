@@ -45,7 +45,6 @@ const Events = () => {
 
   return (
     <div>
-      <Header />
       <Box sx={{ p: 3 }}>
         <Box display="flex" justifyContent="space-between" maxHeight={845}>
           {selectedEvents.events.length !== 0 ? <SelectedEvents /> : <></>}
