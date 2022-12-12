@@ -9,13 +9,16 @@ import { slice as profileApplier } from './reducer';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const profile = useAppSelector(profileSelector);
 
   const handleSetProfile = (profile: ProfileI) => {
-    dispatch(profileApplier.actions.setProfile(profile));
+    dispatch(profileApplier.actions.setProfile({ ...profile, newUser: false }));
+    navigate('/');
   }
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
