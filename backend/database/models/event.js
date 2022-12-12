@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const EVENTTYPE = require('../../enums/eventTypes');
+
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
     static associations(models) {
@@ -28,9 +30,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TIME,
       allowNull: false,
     },
-    duration: {
+    endTime: {
       type: DataTypes.TIME,
       allowNull: false,
+    },
+    type: {
+      type: DataTypes.ENUM(EVENTTYPE.REGULAR, EVENTTYPE.SPECIAL, EVENTTYPE.COORPORATE, EVENTTYPE.CONCERT, EVENTTYPE.OTHER),
+      defaultValue: EVENTTYPE.OTHER
     },
     capacity: {
       type: DataTypes.INTEGER,

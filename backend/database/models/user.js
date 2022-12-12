@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         as: 'profile',
         foreignKey: 'userId'
       });
+      this.logAssociation = this.hasMany(models.Log, {
+        as: 'logs',
+        foreignKey: 'userId'
+      })
     }
   };
   User.init({
@@ -24,7 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true
     },
-    fullName: {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false
     },

@@ -1,19 +1,17 @@
 'use strict';
 const { Model } = require('sequelize');
+const LOGSTYPE = require('../../enums/logs');
+
 module.exports = (sequelize, DataTypes) => {
-  class Booking extends Model {
+  class Log extends Model {
     static associations(models) {
-      this.eventAssociation = this.belongsTo(models.Event, {
-        foreignKey: 'eventId',
-        as: 'event'
-      });
-      this.userAssociation = this.belongsTo(models.User, {
+      this.userAssociation = this.hasOne(models.User, {
         foreignKey: 'userId',
         as: 'user'
       });
     }
   };
-  Booking.init({
+  Log.init({
     eventId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -25,25 +23,24 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       type: DataTypes.STRING,
-      primaryKey: true,
       references: {
         model: 'user',
         key: 'id'
       }
     },
-    hasCancelled: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+    type: {
+      type: DataTypes.ENUM(LOGSTYPE.ACCESS, LOGSTYPE.DATA, LOGSTYPE.ERROR, LOGSTYPE.SYSTEM),
+      allowNull: false,
     },
-    isWaitlist:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+    message: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     sequelize,
-    modelName: 'Booking',
-    tableName: 'booking',
+    modelName: 'Log',
+    tableName: 'log',
     timestamps: true
   });
-  return Booking;
+  return Log;
 };
