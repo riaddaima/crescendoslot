@@ -19,14 +19,10 @@ const Profile = () => {
   }
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
-  const handleFormSubmit = (values: ProfileI) => {
-    console.log(values);
-  };
-
   return (
     <Box m="20px" p={2} sx={{ border: `1px solid ${COLORS.primaryColor}`, transform: isNonMobile ? 'translate(80%)' : undefined }} width={isNonMobile ? '35%' : undefined}>
       <Formik
-        onSubmit={handleFormSubmit}
+        onSubmit={handleSetProfile}
         initialValues={profile}
         validationSchema={checkoutSchema}
       >
@@ -47,6 +43,7 @@ const Profile = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
+              <Avatar sx={{ alignSelf: 'center', justifySelf: 'center', gridColumn: "span 4", width: 56, height: 56 }} src={profile.avatar}  />
               <TextField
                 fullWidth
                 variant="filled"
@@ -132,7 +129,7 @@ const Profile = () => {
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" variant="contained">
-                Create New User
+                Save
               </Button>
             </Box>
           </form>

@@ -56,7 +56,6 @@ const Login = () => {
         email: decodedjwt.email,
         avatar: decodedjwt.picture,
       }));
-      console.log(profile);
       redirectToHome();
     }
   };
