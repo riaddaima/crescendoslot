@@ -43,7 +43,6 @@ const Calendar = ({
      */
     let title = prompt('Please enter a new title for your event');
     let calendarApi = selectInfo.view.calendar;
-    console.log('Title of event', title);
     calendarApi.unselect() // clear date selection
 
     // if (title) {
@@ -89,7 +88,6 @@ const Calendar = ({
   }
 
   const eventCardInformation = (event: EventApi) => {
-    console.log(event.start, event.end);
     return (
       <Fragment>
         <CardMedia

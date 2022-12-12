@@ -1,7 +1,11 @@
 export interface Profile {
-  email: string,
-  name: string,
-  picture: string,
-  iat: number,
-  exp: number,
+  firstName: string;
+  lastName: string;
+  email: string;
+  avatar: string;
+  gender: 'Male' | 'Female';
+  phoneNumber: string;
+  isSubbedNewsletter: boolean;
+  role: 'Manager' | 'Parent';
+  newUser: boolean;
 }
