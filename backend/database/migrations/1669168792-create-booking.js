@@ -1,7 +1,4 @@
 'use strict';
-
-const { sequelize } = require("../models");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('booking', {
@@ -15,8 +12,7 @@ module.exports = {
         }
       },
       userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        type: Sequelize.STRING,
         primaryKey: true,
         references: {
           model: 'user',
@@ -28,7 +24,7 @@ module.exports = {
         defaultValue: false
       }, 
       isWaitlist: {
-        type: sequelize.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         defaultValue: false
       }
     });

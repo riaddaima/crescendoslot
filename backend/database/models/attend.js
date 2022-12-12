@@ -3,18 +3,16 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Attend extends Model {
     static associations(models) {
-      this.eventAssociation = this.belongsTo(models.Booking, {
+      this.bookingEventAssociation = this.belongsTo(models.Booking, {
         foreignKey: 'eventId',
-        as: 'booking', 
+        as: 'event'
+      });
+      this.bookingUserAssociation = this.belongsTo(models.Booking, {
         foreignKey: 'userId',
         as: 'user'
       });
-      this.eventAssociation = this.belongsTo(models.Booking, {
-        foreignKey: 'eventId',
-        as: 'booking'
-      });
-      this.userAssociation = this.belongsTo(models.Dependent, {
-        foreignKey: 'dependantId',
+      this.dependentAssociation = this.belongsTo(models.Dependent, {
+        foreignKey: 'dependentId',
         as: 'dependent'
       });
     }
@@ -29,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    dependantId: {
+    dependentId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -39,13 +37,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     userId: {
-        type: DataTypes.STRING,
-        primaryKey: true,
-        references: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+      references: {
         model: 'user',
         key: 'id'
       }
-
     }
     // still need to create the migration for attend. 
   }, {

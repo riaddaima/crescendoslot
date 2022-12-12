@@ -1,14 +1,7 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
     await queryInterface.createTable('attend', {
       eventId: {
         type: Sequelize.INTEGER,
@@ -19,7 +12,7 @@ module.exports = {
           key: 'id'
         }
       },
-      dependantId: {
+      dependentId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -29,7 +22,7 @@ module.exports = {
         }
       },
       userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
         primaryKey: true,
         references: {

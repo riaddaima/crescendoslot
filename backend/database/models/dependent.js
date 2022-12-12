@@ -1,6 +1,5 @@
 'use strict';
 const { Model } = require('sequelize');
-const DEPENDENT = require('../../enums/dependents');
 module.exports = (sequelize, DataTypes) => {
   class Dependent extends Model {
     static associations(models) {
@@ -8,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'user'
       });
-      this.attendanceAssociation = this.hasMany(models.Attendance, {
+      this.attendAssociation = this.hasMany(models.Attend, {
         as: 'attendances',
         foreignKey: 'dependentId'
       });
@@ -22,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       type: DataTypes.STRING,
+      allowNull: false,
       primaryKey: true,
       references: {
         model: 'user',

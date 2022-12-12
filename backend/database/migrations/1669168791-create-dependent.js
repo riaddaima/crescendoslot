@@ -1,15 +1,16 @@
 'use strict';
-const DEPENDENT = require('../../enums/dependents');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('dependent', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
+        allowNull: false,
         primaryKey: true
       },
       userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
         primaryKey: true,
         references: {
@@ -29,10 +30,6 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
-      type: {
-        type: Sequelize.ENUM(DEPENDENT.SPOUSE, DEPENDENT.KID),
-        allowNull: false
-      }
     });
   },
   down: async (queryInterface, Sequelize) => {

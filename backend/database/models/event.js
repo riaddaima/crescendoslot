@@ -22,16 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false
-    },
     startTime: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     endTime: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     type: {
@@ -61,8 +57,6 @@ module.exports = (sequelize, DataTypes) => {
     thumbnail: {
       type: DataTypes.STRING
     }
-    // What about the evt type
-    
   }, {
     sequelize,
     modelName: 'Event',
