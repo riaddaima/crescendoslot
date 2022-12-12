@@ -1,3 +1,4 @@
+import "@fullcalendar/react/dist/vdom";
 import React, { Dispatch, Fragment, SetStateAction, useState } from 'react';
 import FullCalendar, { EventContentArg } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';

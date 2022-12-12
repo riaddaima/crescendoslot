@@ -16,7 +16,7 @@ import { profileSelector } from "../Profile/reducer/selector";
  * https://console.cloud.google.com/apis/credentials
  */
 
-const clientId = process.env.REACT_APP_CLIENT_ID as string;
+const clientId = import.meta.env.VITE_CLIENT_ID as string;
 
 const Login = () => {
 

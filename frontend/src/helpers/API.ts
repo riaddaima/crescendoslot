@@ -6,7 +6,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } f
  * Use the CrescendoSlot.postman_collection.json
  * to import the collection into your postman and generate a new API endpoint.
  */
-const BASE_API_ENDPOINT = process.env.REACT_APP_BASE_API_ENDPOINT as string;
+const BASE_API_ENDPOINT = import.meta.env.VITE_BASE_API_ENDPOINT as string;
 
 const defaultOptions: AxiosRequestConfig = {
   baseURL: BASE_API_ENDPOINT,
