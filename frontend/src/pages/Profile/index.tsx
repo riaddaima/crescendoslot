@@ -4,8 +4,8 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 const ProfilePage = () => {
   return (
-    <><Sidebar />
-    <Profile /></>
+    <Sidebar />
+    <Profile />
   )
 }
 
