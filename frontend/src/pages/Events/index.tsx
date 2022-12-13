@@ -14,6 +14,7 @@ import {
   deleteCalendarEvent,
 } from './reducer/thunks';
 import { selectedEventsSelector } from '../../components/selectedEvents/reducer/selector';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 const Events = () => {
   const dispatch = useAppDispatch();
@@ -44,6 +45,7 @@ const Events = () => {
   };
 
   return (
+    <><Sidebar />
     <div>
       <Box sx={{ p: 3 }}>
         <Box display="flex" justifyContent="space-between" maxHeight={845}>
@@ -60,7 +62,8 @@ const Events = () => {
           </Box>
         </Box>
       </Box>
-    </div>
+    </div></>
+    
   );
 }
 
