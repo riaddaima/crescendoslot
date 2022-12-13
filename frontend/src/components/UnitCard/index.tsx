@@ -3,9 +3,8 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import ListItem from '@mui/material/ListItem';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from '@mui/icons-material/Save';
@@ -13,19 +12,29 @@ import { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TextField } from "@mui/material";
+import { Box, MenuItem, TextField } from "@mui/material";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { kidsSelector } from '../../pages/Dependents/reducer/selector';
+import { slice as kidsApplier } from '../../pages/Dependents/reducer';
+import { KidI } from "../../pages/Dependents/reducer/state";
+
 
 export default function UnitCard({
+  id,
   name,
   gender,
 }: {
-  name: string;
+  id: number,
+  name: string,
   gender: string;
 }) {
   const [editable, setEditable] = useState(false);
-  const [sexe, setSexe] = React.useState('');
+  const [sexe, setSexe] = React.useState(gender);
+  const [enteredName, setEnteredName] = useState(name);
   const [value, setValue] = React.useState<Dayjs | null>(null);
+
+
 
   const genders = [
     {
@@ -35,12 +44,12 @@ export default function UnitCard({
     {
       value: 'M',
       label: 'Boy',
-    },
-    {
-      value: 'NB',
-      label: 'Non Binary'
-    }
+    },{}
   ];
+  const dispatch = useAppDispatch();
+  const kids = useAppSelector(kidsSelector);
+
+  const kid = kids.kids.filter((kid : KidI)=>kid.id === id)[0];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSexe(event.target.value);
@@ -50,12 +59,23 @@ export default function UnitCard({
     setEditable(true);
   };
 
-  const handleSave = () => {
-    setEditable(false);
+  const handleDelete = (kid: KidI) => {
+    dispatch(kidsApplier.actions.removeKid(kid));
   }
 
+  const handleSave = () => {
+    setEditable(false);
+    const newKid : KidI = {
+      id: kid.id,
+      name: enteredName,
+      gender: sexe,
+      age: 5 // static
+    }
+
+    dispatch(kidsApplier.actions.editKid(newKid));
+  }
   return (
-    <Card sx={{ width: 300 }}>
+    <Card sx={{width: 300, height: 340}}>
       {!editable ? (
         <> {gender === "M"? (<CardMedia
         component="img"
@@ -79,7 +99,7 @@ export default function UnitCard({
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
-              <DeleteIcon />
+              <DeleteIcon onClick={() => handleDelete(kid)}/>
             </IconButton>
             <IconButton aria-label="share">
               <EditIcon onClick={handleEdit} />
@@ -88,43 +108,48 @@ export default function UnitCard({
         </>
       ) : (
         <>
-          <CardContent>
-            <TextField required
-              id="filled-basic"
-              label="Name"
-              variant="outlined"
-              defaultValue={name}
-              sx={{width: 262}}
-            ></TextField>
-            <div>
-              <TextField required
-                id="outlined-select-gender"
-                select
-                label="Gender"
-                value={sexe}
-                onChange={handleChange}
-                sx={{mt: 2, width: 262, mb: 2}}
-              >
-                {genders.map((option) => (
-                  <ListItem key={option.value} value={option.value} sx={{color: 'black'}}>
-                    {option.label}
-                  </ListItem>
-                ))}
-              </TextField>
-            </div> 
-            <LocalizationProvider dateAdapter={AdapterDayjs} >
-              <DatePicker
-                label="Date of birth"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiTextField-root': { mb: 2, mt: 2 }
                 }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
-          </CardContent>
+                noValidate>
+                <TextField required
+                  id="filled-basic"
+                  label="Name"
+                  variant="outlined"
+                  value={enteredName}
+                  onChange={(e)=>setEnteredName(e.target.value)}
+                  sx={{ width: 262 }}
+                ></TextField>
+                <div>
+                  <TextField required
+                    id="outlined-select-gender"
+                    select
+                    label="Select"
+                    onChange={handleChange}
+                    value={sexe}
+                  sx={{ height: 50, width: 262, textAlign:"left"}}
+                  >
+                  {genders.map((option) => (
+                    <MenuItem key={option.value} value={option.value} sx={{ color: 'black', float: 'none' }}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </div>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Date of birth"
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  } }
+                  renderInput={(params) => <TextField {...params} />} />
+              </LocalizationProvider>
+            </Box>
           <CardActions disableSpacing>
-            <IconButton onClick = {handleSave}>
+            <IconButton onClick={handleSave}>
               <SaveIcon />
             </IconButton>
           </CardActions>
