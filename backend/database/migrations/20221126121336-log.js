@@ -4,14 +4,10 @@ const LOGSTYPE = require('../../enums/logs');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('log', {
-      eventId: {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
-        references: {
-          model: 'event',
-          key: 'id'
-        }
       },
       userId: {
         type: Sequelize.STRING,
