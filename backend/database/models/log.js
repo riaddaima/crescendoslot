@@ -12,14 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Log.init({
-    eventId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      references: {
-        model: 'event',
-        key: 'id'
-      }
     },
     userId: {
       type: DataTypes.STRING,
