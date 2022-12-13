@@ -26,9 +26,13 @@ module.exports = {
         allowNull: false
       },
       dob: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
+      gender: {
+        type: Sequelize.ENUM('M', 'F'),
+        allowNull: false
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {

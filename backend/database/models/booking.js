@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    isWaitlist:{
+    isWaitlist: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
