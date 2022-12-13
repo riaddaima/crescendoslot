@@ -3,11 +3,11 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Attend extends Model {
     static associations(models) {
-      this.bookingEventAssociation = this.belongsTo(models.Booking, {
+      this.eventAssociation = this.belongsTo(models.Event, {
         foreignKey: 'eventId',
         as: 'event'
       });
-      this.bookingUserAssociation = this.belongsTo(models.Booking, {
+      this.userAssociation = this.belongsTo(models.User, {
         foreignKey: 'userId',
         as: 'user'
       });
@@ -44,7 +44,6 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     }
-    // still need to create the migration for attend. 
   }, {
     sequelize,
     modelName: 'Attend',

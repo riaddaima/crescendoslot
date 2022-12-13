@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
         as: 'attendances',
         foreignKey: 'dependentId'
       });
+      this.bookingAssociation = this.hasMany(models.Booking, {
+        through: models.Attend,
+        sourceKey: 'eventId',
+        foreignKey: 'userId',
+        as: 'bookings'
+      })
     }
   };
   Dependent.init({
