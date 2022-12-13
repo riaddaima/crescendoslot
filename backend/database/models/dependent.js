@@ -47,10 +47,13 @@ module.exports = (sequelize, DataTypes) => {
        * @riaddaima
        * Maybe add this into user model too.
        */
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
-    }, 
-
+    },
+    gender: {
+      type: DataTypes.ENUM('M', 'F'),
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Dependent',
