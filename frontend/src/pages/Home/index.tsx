@@ -1,21 +1,13 @@
-import React, { useEffect, useState, ChangeEvent } from "react";
-import { useCookies } from "react-cookie";
-import jwtDecode from "jwt-decode";
+import React, { useState, ChangeEvent } from "react";
 import Header from "../../components/Header";
 import StaticDatePickerLandscape from "../../components/StaticDatePickerLandscape";
 import { Stack, TextField, Grid, Box, Button } from "@mui/material";
 import StaticTimePicker from "../../components/StaticTimePicker";
-import { Profile } from "../../interfaces/Profile";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { profileSelector } from "../../components/Profile/reducer/selector";
 
 const Home = () => {
-  const [cookies] = useCookies(['jwt-token']);
-  const [profile, setProfile] = useState<Profile>({
-    email: '',
-    name: '',
-    picture: '',
-    iat: 0,
-    exp: 0,
-  });
+  const profile = useAppSelector(profileSelector);
 
   const [date, setDate] = useState<Date>(new Date());
   const [startTime, setStartTime] = useState<number>(Date.now());
@@ -25,14 +17,9 @@ const Home = () => {
     setDuration(event.target.value as number);
   };
 
-  useEffect(() => {
-    setProfile(jwtDecode(cookies["jwt-token"]));
-  }, [cookies]);
-
   return (
     <div>
-      <Header />
-      <h1>Welcome Home, {profile.name}</h1>
+      <h1>Welcome Home, {profile.firstName}</h1>
       <br />
       <Stack
         justifyContent="center"

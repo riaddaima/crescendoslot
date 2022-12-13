@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Avatar from '@mui/material/Avatar';
-import { useCookies } from "react-cookie";
-import jwtDecode from "jwt-decode";
 import Logout from "../Logout";
 import './header.css';
-import { Profile } from "../../interfaces/Profile";
+import { useAppSelector } from "../../app/hooks";
+import { profileSelector } from "../Profile/reducer/selector";
 
 const Header = () => {
-  const [cookies] = useCookies(['jwt-token']);
-  const [profile, setProfile] = useState<Profile>({
-    email: '',
-    name: '',
-    picture: '',
-    iat: 0,
-    exp: 0,
-  });
-
-  useEffect(() => {
-    setProfile(jwtDecode(cookies["jwt-token"]));
-  }, [cookies]);
+  const profile = useAppSelector(profileSelector);
   return (
-    <div>
+    <div className="header">
       <ul>
-        <li><Avatar src={profile.picture}/></li>
+        <li><Avatar src={profile.avatar}/></li>
         <li>{profile.email}</li>
         <li>
           <Logout />
