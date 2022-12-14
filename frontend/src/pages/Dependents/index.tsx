@@ -1,4 +1,3 @@
-import Header from "../../components/Header";
 import UnitCard from "../../components/UnitCard";
 import AddCard from "../../components/AddCard"
 import Grid from '@mui/material/Grid';
@@ -12,7 +11,6 @@ const Dependents = () => {
     const kids = useAppSelector(kidsSelector);
     return (
         <>
-            <Header />
             <Box>
                 <Grid container spacing={2}>
                     {kids.map((kid: KidI) => 

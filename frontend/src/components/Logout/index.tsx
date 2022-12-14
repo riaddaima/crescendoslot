@@ -12,6 +12,7 @@ const Logout = () => {
 
   const handleLogout = () => {
     dispatch(profileApplier.actions.setProfile(profileInitialState));
+    dispatch(profileApplier.actions.setProfile(profileInitialState))
     removeCookies('jwt-token');
     googleLogout();
   }

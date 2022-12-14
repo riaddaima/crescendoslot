@@ -6,17 +6,17 @@ export const slice = createSlice({
   initialState,
   reducers: {
     addKid: (state, action: PayloadAction<KidI>) => {
-    const id = state.kids[state.kids.length-1].id+1;
-    action.payload.id = id;
-    (state.kids).push(action.payload);
+      const id = state[state.length-1].id+1;
+      action.payload.id = id;
+      (state).push(action.payload);
     },
     removeKid: (state, action: PayloadAction<KidI>) => {
-      const kidIndex = (state.kids).findIndex((kid: KidI) => kid.id === action.payload.id);
-      state.kids.splice(kidIndex, 1);
+      const kidIndex = (state).findIndex((kid: KidI) => kid.id === action.payload.id);
+      state.splice(kidIndex, 1);
     },
     editKid: (state, action: PayloadAction<KidI>) => {
-        const kidIndex = (state.kids).findIndex((kid: KidI) => kid.id === action.payload.id);
-        state.kids[kidIndex] = action.payload;
+        const kidIndex = (state).findIndex((kid: KidI) => kid.id === action.payload.id);
+        state[kidIndex] = action.payload;
     }
   },
 });

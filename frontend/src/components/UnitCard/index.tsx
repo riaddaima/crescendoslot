@@ -49,7 +49,7 @@ export default function UnitCard({
   const dispatch = useAppDispatch();
   const kids = useAppSelector(kidsSelector);
 
-  const kid = kids.kids.filter((kid : KidI)=>kid.id === id)[0];
+  const kid = kids.filter((kid : KidI)=>kid.id === id)[0];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSexe(event.target.value);
