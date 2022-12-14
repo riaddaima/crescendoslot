@@ -1,4 +1,4 @@
-ul {
+.header ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -10,11 +10,11 @@ ul {
   border-bottom: 1px solid #7e4f9b;
 }
 
-li:first-child {
+.header li:first-child {
   padding: 14px;
 }
 
-li {
+.header li {
   float: left;
   display: block;
   color: #7E4F9B;
@@ -23,6 +23,6 @@ li {
   text-decoration: none;
 }
 
-li:last-child {
+.header li:last-child {
   float: right;
 }
