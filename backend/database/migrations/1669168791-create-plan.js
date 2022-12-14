@@ -1,4 +1,5 @@
 'use strict';
+const PLANTYPES = require('../../enums/planTypes');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -9,7 +10,7 @@ module.exports = {
         primaryKey: true
       },
       type: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM(PLANTYPES.FEE, PLANTYPES.PACK),
         allowNull: false
       },
       title: {
