@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const PLANTYPES = require('../../enums/planTypes');
 
 module.exports = (sequelize, DataTypes) => {
   class Plan extends Model {
@@ -15,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     type: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM(PLANTYPES.FEE, PLANTYPES.PACK),
       allowNull: false
     },
     title: {

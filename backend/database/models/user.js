@@ -42,7 +42,8 @@ module.exports = (sequelize, DataTypes) => {
       isEmail: true
     },
     phoneNumber: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     role: {
       type: DataTypes.ENUM(ROLE.MANAGER, ROLE.PARENT),
