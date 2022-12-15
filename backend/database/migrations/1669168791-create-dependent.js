@@ -32,7 +32,15 @@ module.exports = {
       gender: {
         type: Sequelize.ENUM('M', 'F'),
         allowNull: false
-      }
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

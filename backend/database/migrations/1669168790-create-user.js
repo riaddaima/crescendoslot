@@ -28,7 +28,15 @@ module.exports = {
       role: {
         type: Sequelize.ENUM(ROLE.MANAGER, ROLE.PARENT),
         defaultValue: ROLE.PARENT
-      }
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
