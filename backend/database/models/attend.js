@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Attend',
     tableName: 'attend',
-    timestamps: false
+    timestamps: true
   });
   return Attend;
 };
