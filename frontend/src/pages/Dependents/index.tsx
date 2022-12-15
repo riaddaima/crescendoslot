@@ -13,9 +13,9 @@ const Dependents = () => {
         <>
             <Box>
                 <Grid container spacing={2}>
-                    {kids.map((kid: KidI) => 
-                        <Grid item key={kid['id']}>
-                            <UnitCard id={kid['id']} name={kid['name']} gender={kid['gender']}/>
+                    {kids.map((skid: KidI) => 
+                        <Grid item key={skid['id']}>
+                            <UnitCard {...skid}/>
                         </Grid>
                     )} 
                     <Grid item>

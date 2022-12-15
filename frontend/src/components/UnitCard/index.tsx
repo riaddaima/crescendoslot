@@ -20,18 +20,13 @@ import { slice as kidsApplier } from '../../pages/Dependents/reducer';
 import { KidI } from "../../pages/Dependents/reducer/state";
 
 
-export default function UnitCard({
-  id,
-  name,
-  gender,
-}: {
-  id: number,
-  name: string,
-  gender: string;
-}) {
+export default function UnitCard(
+  kid
+: KidI) {
   const [editable, setEditable] = useState(false);
-  const [sexe, setSexe] = React.useState(gender);
-  const [enteredName, setEnteredName] = useState(name);
+  const [sexe, setSexe] = React.useState(kid.gender);
+  const [enteredFName, setEnteredFName] = useState(kid.fname);
+  const [enteredLName, setEnteredLName] = useState(kid.lname);
   const [value, setValue] = React.useState<Dayjs | null>(null);
 
 
@@ -49,7 +44,7 @@ export default function UnitCard({
   const dispatch = useAppDispatch();
   const kids = useAppSelector(kidsSelector);
 
-  const kid = kids.filter((kid : KidI)=>kid.id === id)[0];
+  const skid = kids.filter((kid : KidI)=>kid.id === kid.id)[0];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSexe(event.target.value);
@@ -60,14 +55,15 @@ export default function UnitCard({
   };
 
   const handleDelete = (kid: KidI) => {
-    dispatch(kidsApplier.actions.removeKid(kid));
+    dispatch(kidsApplier.actions.removeKid(skid));
   }
 
   const handleSave = () => {
     setEditable(false);
     const newKid : KidI = {
       id: kid.id,
-      name: enteredName,
+      fname: enteredFName,
+      lname: enteredLName,
       gender: sexe,
       age: 5 // static
     }
@@ -77,7 +73,7 @@ export default function UnitCard({
   return (
     <Card sx={{width: 300, height: 340}}>
       {!editable ? (
-        <> {gender === "M"? (<CardMedia
+        <> {kid.gender === "M"? (<CardMedia
         component="img"
         height="220"
         image="https://static.vecteezy.com/system/resources/previews/000/652/388/non_2x/head-of-cute-little-boy-avatar-character-vector.jpg"
@@ -94,7 +90,7 @@ export default function UnitCard({
           
           <CardContent>
             <Typography variant="h5" color="text.primary">
-              {name}
+              {kid.fname + " " + kid.lname}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
@@ -116,10 +112,18 @@ export default function UnitCard({
                 noValidate>
                 <TextField required
                   id="filled-basic"
-                  label="Name"
+                  label="First Name"
                   variant="outlined"
-                  value={enteredName}
-                  onChange={(e)=>setEnteredName(e.target.value)}
+                  value={enteredFName}
+                  onChange={(e)=>setEnteredFName(e.target.value)}
+                  sx={{ width: 262 }}
+                ></TextField>
+                <TextField required
+                  id="filled-basic"
+                  label="Last Name"
+                  variant="outlined"
+                  value={enteredLName}
+                  onChange={(e)=>setEnteredLName(e.target.value)}
                   sx={{ width: 262 }}
                 ></TextField>
                 <div>

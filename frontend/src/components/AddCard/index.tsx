@@ -21,7 +21,8 @@ import { KidI } from "../../pages/Dependents/reducer/state";
 
 export default function AddCard() {
   const [editable, setEditable] = useState(false);
-  const [name, setName] = useState('');
+  const [fname, setFName] = useState('');
+  const [lname, setLName] = useState('');
   const [sexe, setSexe] = React.useState('');
   const [value, setValue] = React.useState<Dayjs | null>(null);
 
@@ -48,7 +49,8 @@ export default function AddCard() {
   const handleCancel = () => {
     setEditable(false);
 
-    setName('');
+    setFName('');
+    setLName('');
     setSexe('');
     setValue(null);
   }
@@ -58,14 +60,16 @@ export default function AddCard() {
     
     const kid : KidI = {
       id: 3,  // static value that changes in reducer before insert
-      name: name,
+      fname: fname,
+      lname: lname,
       gender: sexe,
       age: 3, // static value
 
     }
 
     dispatch(kidsApplier.actions.addKid(kid));
-    setName('');
+    setFName('');
+    setLName('');
     setSexe('');
     setValue(null);
   }
@@ -98,8 +102,16 @@ export default function AddCard() {
               label="Name"
               variant="outlined"
               sx={{width: 262}}
-              value={name}
-              onChange={(e)=>setName(e.target.value)}
+              value={fname}
+              onChange={(e)=>setFName(e.target.value)}
+            ></TextField>
+            <TextField required
+              id="filled-basic"
+              label="Name"
+              variant="outlined"
+              sx={{width: 262}}
+              value={lname}
+              onChange={(e)=>setLName(e.target.value)}
             ></TextField>
             <div>
             <TextField required
