@@ -20,7 +20,9 @@ module.exports = {
       lastName: 'Daima',
       email: 'riaddaima1@gmail.com',
       phoneNumber: '+212693502372',
-      role: ROLE.PARENT
+      role: ROLE.PARENT,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }])
   },
 

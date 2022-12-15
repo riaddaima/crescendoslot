@@ -15,7 +15,9 @@ module.exports = {
     await queryInterface.bulkInsert('attend', [{
       eventId: 1,
       dependentId: 1,
-      userId: '105767007048062418413'
+      userId: '105767007048062418413',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }])
   },
 

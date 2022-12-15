@@ -12,7 +12,9 @@ module.exports = {
       maxAge: 4,
       venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
       description: 'Lorem Ipsum Dolor',
-      thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg'
+      thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2019/01/Classics-2-6-featured2-600x698.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
       name: 'Baby Class',
       startTime: moment().day('Saturday').hours('10').minutes('00').seconds('00').milliseconds('00').toDate(),
@@ -22,7 +24,9 @@ module.exports = {
       maxAge: 2,
       venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
       description: 'Lorem Ipsum Dolor',
-      thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/mixed-age-e1618426540331.png'
+      thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/mixed-age-e1618426540331.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
       name: 'Mixed Age',
       startTime: moment().day('Wednesday').hours('17').minutes('30').seconds('00').milliseconds('00').toDate(),
@@ -32,7 +36,9 @@ module.exports = {
       maxAge: 6,
       venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
       description: 'Lorem Ipsum Dolor',
-      thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/Untitled-design-3-600x698.png'
+      thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/Untitled-design-3-600x698.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
       name: 'Music & Mingle',
       startTime: moment().day('Tuesday').hours('10').minutes('30').seconds('00').milliseconds('00').toDate(),
@@ -42,7 +48,9 @@ module.exports = {
       maxAge: 6,
       venue: 'Crescendo Home - 2, Rue Hamza, Haut Agdal, Rabat',
       description: 'Lorem Ipsum Dolor',
-      thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/Untitled-design-3-600x698.png'
+      thumbnail: 'https://crescendobabymusic.com/wp-content/uploads/2020/09/Untitled-design-3-600x698.png',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }])
   },
 

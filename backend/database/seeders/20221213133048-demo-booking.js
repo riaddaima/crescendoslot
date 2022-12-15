@@ -16,12 +16,16 @@ module.exports = {
       eventId: 1,
       userId: '105767007048062418413',
       hasCancelled: false,
-      isWaitlist: false
+      isWaitlist: false,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
       eventId: 2,
       userId: '105767007048062418413',
       hasCancelled: true,
-      isWaitlist: false
+      isWaitlist: false,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }])
   },
 

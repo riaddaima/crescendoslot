@@ -1,5 +1,5 @@
 'use strict';
-
+const PLANTYPE = require('../../enums/planTypes');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -13,60 +13,82 @@ module.exports = {
      * }], {});
     */
     await queryInterface.bulkInsert('plan', [{
-      type: 'fee',
+      type: PLANTYPE.FEE,
       title: 'Fees of regular class',
       price: 150.00,
-      numKids: 1
+      numKids: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'fee',
+      type: PLANTYPE.FEE,
       title: 'Fees of special class',
       price: 180.00,
-      numKids: 1
+      numKids: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'fee',
+      type: PLANTYPE.FEE,
       title: 'Regular class (includes both parents)',
       price: 280.00,
-      numKids: 2
+      numKids: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'fee',
+      type: PLANTYPE.FEE,
       title: 'Special class (includes both parents)',
       price: 360.00,
-      numKids: 2
+      numKids: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'pack',
+      type: PLANTYPE.PACK,
       title: '3 classes pack',
       price: 450.00,
-      numKids: 1
+      numKids: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'pack',
+      type: PLANTYPE.PACK,
       title: '6 classes pack FAMILY CARD (2 Months membership)',
       price: 800.00,
-      numKids: 1
+      numKids: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'pack',
+      type: PLANTYPE.PACK,
       title: '12 classes pack FAMILY CARD (4 Months membership)',
       price: 1500.00,
-      numKids: 1
+      numKids: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'pack',
+      type: PLANTYPE.PACK,
       title: '6 classes pack for siblings',
       price: 1500.00,
-      numKids: 2
+      numKids: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'pack',
+      type: PLANTYPE.PACK,
       title: '6 classes pack for siblings',
       price: 2000.00,
-      numKids: 3 
+      numKids: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'pack',
+      type: PLANTYPE.PACK,
       title: '12 classes pack for siblings',
       price: 2700.00,
-      numKids: 2
+      numKids: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
-      type: 'pack',
+      type: PLANTYPE.PACK,
       title: '12 classes pack for siblings',
       price: 3700.00,
-      numKids: 3
+      numKids: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }])
   },
 

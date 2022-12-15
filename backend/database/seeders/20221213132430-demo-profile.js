@@ -15,7 +15,9 @@ module.exports = {
     await queryInterface.bulkInsert('profile', [{
       userId: '105767007048062418413',
       gender: 'M',
-      isSubbedNewsletter: true
+      isSubbedNewsletter: true,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }])
   },
 

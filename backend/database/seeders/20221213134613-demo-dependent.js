@@ -16,13 +16,17 @@ module.exports = {
       firstName: 'El Mehdi',
       lastName: 'El Boustani',
       dob: new Date('2017-01-01'),
-      gender: 'M'
+      gender: 'M',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }, {
       userId: '105767007048062418413',
       firstName: 'Alae',
       lastName: 'Hidad',
       dob: new Date('2021-01-01'),
-      gender: 'F'
+      gender: 'F',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }])
   },
 
