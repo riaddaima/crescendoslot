@@ -10,8 +10,8 @@ const Nav = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 5rem;
-    background-color: purple;
+    height: 4rem;
+    background-color: black;
 `;
 
 const SidebarNav = styled.div<{ sidebar: boolean }>`
@@ -30,7 +30,7 @@ const NavIcon = styled(Link)`
     align-items: center;
     height: 5rem;
     font-size: 2rem;
-    margin-left: 2rem;
+    margin-left: 2rem;  
 `;
 
 const SidebarWrap = styled.div``;
@@ -39,13 +39,14 @@ const Sidebar: FC = () => {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
+    
     return (
         <IconContext.Provider value={{ color: '#fff' }}>
             <Nav>
                 <NavIcon to="#" onClick={showSidebar}>
                     <AiOutlineMenu />
                 </NavIcon>
-            </Nav>
+            </Nav>  
             <SidebarNav sidebar={sidebar}>
                 <SidebarWrap>
                     <NavIcon to="#" onClick={showSidebar}>
