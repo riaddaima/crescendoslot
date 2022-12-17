@@ -25,6 +25,10 @@ const getUserById = async (req, res) => {
 const postNewUser = async (req, res) => {
   try {
     const user = await createUser(req.body);
+    /**
+     * @riaddaima
+     * We still need to create the profile of the user.
+     */
     res.status(201).json({ user });
   } catch (error) {
     res.status(500).json({ error: error.message });
