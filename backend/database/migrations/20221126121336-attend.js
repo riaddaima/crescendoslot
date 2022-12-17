@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.createTable('attend', {
       eventId: {
         type: Sequelize.INTEGER,
@@ -26,8 +26,9 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         references: {
-        model: 'user',
-        key: 'id'
+          model: 'user',
+          key: 'id'
+        },
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -37,11 +38,10 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
       },
-    }
     });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add reverting commands here.
      *
