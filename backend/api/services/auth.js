@@ -3,16 +3,13 @@ const { getUser } = require('../services/user');
 
 const clientId = process.env.CLIENT_ID;
 
-const verify = async (req, res, next) => {
+const login = async (req, res, next) => {
   try {
-    const bearerHeader = req.headers['authorization'];
-    const client = new OAuth2Client(clientId);
-  
-    if (bearerHeader) {
-      // Removing Bearer from string.
-      const bearer = bearerHeader.split(' ');
-      const bearerToken = bearer[1];
 
+    const bearerToken = req.body['jwt-token'];
+    const client = new OAuth2Client(clientId);
+
+    if (bearerToken) {
       // Verifying token using verifyIdToken.
       const ticket = await client.verifyIdToken({
           idToken: bearerToken,
@@ -21,11 +18,27 @@ const verify = async (req, res, next) => {
 
       const payload = ticket.getPayload();
       const userid = payload['sub'];
-  
+
       if (ticket) {
         const user = await getUser(userid);
-        if (user) return next();
-        throw new Error('User not found');
+        // const userProfile = await getUserProfile(userid);
+        if (user) {
+          return res.status(200).json({
+            ...user,
+            newUser: false
+          });
+        }
+        return res.status(200).json({
+          firstName: payload['given_name'],
+          lastName: payload['family_name'],
+          email: payload['email'],
+          avatar: payload['picture'],
+          gender: 'Male',
+          phoneNumber: '',
+          isSubbedNewsletter: false,
+          role: 'Parent',
+          newUser: true
+        });
         /**
          * @riaddaima
          * Should handle logs for newly created users.
@@ -46,10 +59,3 @@ const verify = async (req, res, next) => {
     res.status(401).json({ error: error.message });
   }
 }
-/**
- * @riaddaima
- * Handle expired token to send a logout code to frontend here.
- */
-// verify().catch(console.error);
-
-module.exports = { verify };
