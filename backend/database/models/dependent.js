@@ -3,7 +3,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Dependent extends Model {
     static associate(models) {
-      this.userAssociation = this.belongsTo(models.User);
+      // this.userAssociation = this.belongsTo(models.User);
       this.attendAssociation = this.belongsToMany(models.Event, {
         through: models.Attend,
         foreignKey: 'dependentId'
