@@ -18,8 +18,9 @@ module.exports = (sequelize, DataTypes) => {
         as: 'dependents',
         foreignKey: 'userId'
       });
-      this.hasOne(models.Profile, {
+      this.profileAssociation = this.hasOne(models.Profile, {
         foreignKey: 'userId',
+        as: 'user'
       });
       this.logAssociation = this.hasMany(models.Log, {
         as: 'logs',

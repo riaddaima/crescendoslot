@@ -8,16 +8,24 @@ module.exports = (sequelize, DataTypes) => {
       //   as: 'attendances',
       //   foreignKey: 'dependentId'
       // });
-      this.attendEventAssociation = this.belongsToMany(models.Event, {
-        through: models.Attend,
-        as: 'events',
-        foreignKey: 'dependentId',
-      });
-      this.attendUserAssociation = this.belongsToMany(models.User, {
-        through: models.Attend,
-        as: 'users',
-        foreignKey: 'dependentId',
-      });
+      // this.attendEventAssociation = this.belongsToMany(models.Event, {
+      //   through: models.Attend,
+      //   as: 'dependentattendances',
+      //   foreignKey: {
+      //     name: 'eventId',
+      //     type: DataTypes.INTEGER,
+      //     primaryKey: true
+      //   },
+      // });
+      // this.attendUserAssociation = this.belongsTo(models.User, {
+      //   through: models.Attend,
+      //   as: 'user',
+      //   foreignKey: {
+      //     name: 'userId',
+      //     type: DataTypes.STRING,
+      //     primaryKey: true
+      //   },
+      // });
     }
   };
   Dependent.init({

@@ -11,11 +11,15 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'eventId'
       });
       // this.attendAssociation = this.hasMany
-      this.attendDependentAssociation = this.belongsToMany(models.Dependent, {
-        through: models.Attend,
-        as: 'dependents',
-        foreignKey: 'eventId'
-      });
+      // this.attendDependentAssociation = this.belongsToMany(models.Dependent, {
+      //   through: models.Attend,
+      //   as: 'events',
+      //   foreignKey: {
+      //     name: 'eventId',
+      //     type: DataTypes.INTEGER,
+      //     primaryKey: true,
+      //   }
+      // });
     }
   };
   Event.init({
