@@ -2,18 +2,15 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Attend extends Model {
-    static associations(models) {
+    static associate(models) {
+      this.dependentAssociation = this.belongsTo(models.Dependent, {
+        as: 'dependent'
+      });
       this.eventAssociation = this.belongsTo(models.Event, {
-        foreignKey: 'eventId',
         as: 'event'
       });
       this.userAssociation = this.belongsTo(models.User, {
-        foreignKey: 'userId',
         as: 'user'
-      });
-      this.dependentAssociation = this.belongsTo(models.Dependent, {
-        foreignKey: 'dependentId',
-        as: 'dependent'
       });
     }
   };
@@ -22,27 +19,27 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      references: {
-        model: 'event',
-        key: 'id'
-      }
+      // references: {
+      //   model: 'event',
+      //   key: 'id'
+      // }
     },
     dependentId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      references: {
-        model: 'dependent',
-        key: 'id'
-      }
+      // references: {
+      //   model: 'dependent',
+      //   key: 'id'
+      // }
     },
     userId: {
       type: DataTypes.STRING,
       primaryKey: true,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
+      // references: {
+      //   model: 'user',
+      //   key: 'id'
+      // }
     }
   }, {
     sequelize,

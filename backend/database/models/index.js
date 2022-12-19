@@ -23,6 +23,17 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+const syncModels = async () => {
+  try {
+    await sequelize.sync({ force: true });
+    console.log('All models were synchronized successfully.');
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+syncModels();
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -1,4 +1,4 @@
-const { User } = require('../../database/models');
+const { User, Profile } = require('../../database/models');
 
 const createUser = async (user) => {
   try {
@@ -14,6 +14,10 @@ const getUser = async (id) => {
     const user = await User.findOne({
       where: { id },
       raw: true,
+      include: {
+        model: Profile,
+        as: 'profile'
+      },
     });
     return user;
   } catch (error) {
@@ -45,7 +49,13 @@ const deleteUser = async (id) => {
 
 const getUsers = async () => {
   try {
-    const users = await User.findAll({ raw: true });
+    const users = await User.findAll({
+      raw: true,
+      include: {
+        model: Profile,
+        as: 'profile'
+      }
+    });
     return users;
   } catch (error) {
     throw error;

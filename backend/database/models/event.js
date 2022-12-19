@@ -4,10 +4,16 @@ const EVENTTYPE = require('../../enums/eventTypes');
 
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
-    static associations(models) {
-      this.userAssociation = this.hasMany(models.User, {
+    static associate(models) {
+      this.userAssociation = this.belongsToMany(models.User, {
         through: models.Booking,
         as: 'users',
+        foreignKey: 'eventId'
+      });
+      // this.attendAssociation = this.hasMany
+      this.attendDependentAssociation = this.belongsToMany(models.Dependent, {
+        through: models.Attend,
+        as: 'dependents',
         foreignKey: 'eventId'
       });
     }

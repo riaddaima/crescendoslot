@@ -9,6 +9,12 @@ export const slice: Slice = createSlice({
     setProfile: (state, action: PayloadAction<Profile>) => {
       state = Object.assign(state, action.payload);
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(slice.actions.setProfile, (state, action) => {
+        state = Object.assign(state, action.payload);
+      })
   }
 })
 

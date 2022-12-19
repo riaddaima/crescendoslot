@@ -7,7 +7,7 @@ export const initialState: Profile = {
   avatar: '',
   gender: 'Male',
   phoneNumber: '',
-  isSubbedNewsletter: true,
+  isSubbedNewsletter: false,
   role: 'Parent',
   newUser: true
 };

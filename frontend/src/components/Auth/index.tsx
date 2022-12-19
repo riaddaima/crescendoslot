@@ -5,7 +5,7 @@ import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { CredentialResponse } from '../../interfaces/CredentialResponse';
 import './login.css';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { loginUser } from './reducer/thunks';
+import { authLogin } from './reducer/thunks';
 import { slice as profileApplier } from '../Profile/reducer';
 import jwtDecode from "jwt-decode";
 import { profileSelector } from "../Profile/reducer/selector";
@@ -22,7 +22,7 @@ const Login = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [, setCookie] = useCookies(['jwt-token']);
+  // const [, setCookie] = useCookies(['jwt-token']);
   const profile = useAppSelector(profileSelector);
 
   const redirectToHome = () => navigate('/');
@@ -31,9 +31,9 @@ const Login = () => {
   const onSuccess = (res: CredentialResponse) => {
     const { credential } = res;
     if (credential) {
-      dispatch(loginUser(credential));
-      setCookie('jwt-token', credential);
-      const decodedjwt: any = jwtDecode(credential);
+      dispatch(authLogin(credential));
+      // setCookie('jwt-token', credential);
+      // const decodedjwt: any = jwtDecode(credential);
 
       // {
       //   "iss": "https://accounts.google.com",

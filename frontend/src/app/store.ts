@@ -1,6 +1,6 @@
 import { Action, configureStore, ThunkAction, combineReducers } from '@reduxjs/toolkit';
 
-import login from '../components/Login/reducer';
+import login from '../components/Auth/reducer';
 import calendar from '../pages/Events/reducer';
 import selectedEvents from '../components/selectedEvents/reducer';
 import profile from '../components/Profile/reducer';

@@ -9,7 +9,7 @@ app.use(express.json());
 
 const PORT = 3001
 
-app.use('/api', apiRouter);;
+app.use('/api', apiRouter);
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
 });

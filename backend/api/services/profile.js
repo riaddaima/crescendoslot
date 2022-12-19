@@ -1,10 +1,14 @@
-const { Profile } = require('../../database/models');
+const { User, Profile } = require('../../database/models');
 
 const getUserProfile = async (id) => {
   try {
     const profile = await Profile.findOne({
       where: { userId: id },
       raw: true,
+      include: {
+        model: User,
+        as: 'user'
+      }
     });
     return profile;
   } catch (error) {
@@ -34,7 +38,13 @@ const updateUserProfile = async (id, profile) => {
 
 const getUsersProfile = async () => {
   try {
-    const profiles = await Profile.findAll({ raw: true });
+    const profiles = await Profile.findAll({
+      raw: true,
+      include: {
+        model: User,
+        as: 'user'
+      }
+    });
     return profiles;
   } catch (error) {
     throw error;

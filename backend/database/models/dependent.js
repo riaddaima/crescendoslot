@@ -2,21 +2,22 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Dependent extends Model {
-    static associations(models) {
-      this.userAssociation = this.belongsTo(models.User, {
-        foreignKey: 'userId',
-        as: 'user'
-      });
-      this.attendAssociation = this.hasMany(models.Attend, {
-        as: 'attendances',
-        foreignKey: 'dependentId'
-      });
-      this.bookingAssociation = this.hasMany(models.Booking, {
+    static associate(models) {
+      this.userAssociation = this.belongsTo(models.User);
+      // this.attendAssociation = this.hasMany(models.Attend, {
+      //   as: 'attendances',
+      //   foreignKey: 'dependentId'
+      // });
+      this.attendEventAssociation = this.belongsToMany(models.Event, {
         through: models.Attend,
-        sourceKey: 'eventId',
-        foreignKey: 'userId',
-        as: 'bookings'
-      })
+        as: 'events',
+        foreignKey: 'dependentId',
+      });
+      this.attendUserAssociation = this.belongsToMany(models.User, {
+        through: models.Attend,
+        as: 'users',
+        foreignKey: 'dependentId',
+      });
     }
   };
   Dependent.init({
@@ -25,14 +26,14 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    userId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    },
+    // userId: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'user',
+    //     key: 'id'
+    //   }
+    // },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false

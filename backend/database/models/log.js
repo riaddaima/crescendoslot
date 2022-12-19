@@ -4,9 +4,8 @@ const LOGSTYPE = require('../../enums/logs');
 
 module.exports = (sequelize, DataTypes) => {
   class Log extends Model {
-    static associations(models) {
-      this.userAssociation = this.hasOne(models.User, {
-        foreignKey: 'userId',
+    static associate(models) {
+      this.userAssociation = this.belongsTo(models.User, {
         as: 'user'
       });
     }
@@ -17,13 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
-    userId: {
-      type: DataTypes.STRING,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    },
+    // userId: {
+    //   type: DataTypes.STRING,
+    //   references: {
+    //     model: 'user',
+    //     key: 'id'
+    //   }
+    // },
     type: {
       type: DataTypes.ENUM(LOGSTYPE.ACCESS, LOGSTYPE.DATA, LOGSTYPE.ERROR, LOGSTYPE.SYSTEM),
       allowNull: false,

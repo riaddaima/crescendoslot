@@ -4,7 +4,7 @@ const PLANTYPES = require('../../enums/planTypes');
 
 module.exports = (sequelize, DataTypes) => {
   class Plan extends Model {
-    static associations(models) {
+    static associate(models) {
       // define association here
       // for now, plan is not linked to any entity yet
     }

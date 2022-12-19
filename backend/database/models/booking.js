@@ -2,20 +2,23 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
-    static associations(models) {
+    static associate(models) {
       this.eventAssociation = this.belongsTo(models.Event, {
-        foreignKey: 'eventId',
+        // foreignKey: 'eventId',
         as: 'event'
       });
       this.userAssociation = this.belongsTo(models.User, {
-        foreignKey: 'userId',
+        // foreignKey: 'userId',
         as: 'user'
       });
-      this.dependentAssociation = this.hasMany(models.Dependent, {
-        through: models.Attend,
-        as: 'dependents',
-        foreignKey: 'dependentId'
-      })
+      // this.dependentAssociation = this.belongsToMany(models.Dependent, {
+      //   through: models.Attend,
+      //   as: 'dependents',
+      //   foreignKey: 'dependentId'
+      // })
+      // this.attendAssociation = this.belongsToMany(models.Attend, {
+      //   through: models.Attend,
+      // });
     }
   };
   Booking.init({
@@ -23,18 +26,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      references: {
-        model: 'event',
-        key: 'id'
-      }
+      // references: {
+      //   model: 'event',
+      //   key: 'id'
+      // }
     },
     userId: {
       type: DataTypes.STRING,
       primaryKey: true,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
+      // references: {
+      //   model: 'user',
+      //   key: 'id'
+      // }
     },
     hasCancelled: {
       type: DataTypes.BOOLEAN,
