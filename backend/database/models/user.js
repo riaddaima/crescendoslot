@@ -6,24 +6,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.eventAssociation = this.belongsToMany(models.Event, {
         through: models.Booking,
-        as: 'events',
         foreignKey: 'userId'
       });
       this.attendEventAssociation = this.belongsToMany(models.Event, {
         through: models.Attend,
-        as: 'attendances',
         foreignKey: 'userId'
       });
       this.dependentAssociation = this.hasMany(models.Dependent, {
-        as: 'dependents',
         foreignKey: 'userId'
       });
       this.profileAssociation = this.hasOne(models.Profile, {
         foreignKey: 'userId',
-        as: 'user'
       });
       this.logAssociation = this.hasMany(models.Log, {
-        as: 'logs',
         foreignKey: 'userId'
       });
     }

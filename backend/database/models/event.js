@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.userAssociation = this.belongsToMany(models.User, {
         through: models.Booking,
-        as: 'users',
+        foreignKey: 'eventId'
+      });
+      this.userAttendAssociation = this.belongsToMany(models.User, {
+        through: models.Attend,
         foreignKey: 'eventId'
       });
       // this.attendAssociation = this.hasMany

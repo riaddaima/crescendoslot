@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
   class Dependent extends Model {
     static associate(models) {
       this.userAssociation = this.belongsTo(models.User);
+      this.attendAssociation = this.belongsToMany(models.Event, {
+        through: models.Attend,
+        foreignKey: 'dependentId'
+      });
       // this.attendAssociation = this.hasMany(models.Attend, {
       //   as: 'attendances',
       //   foreignKey: 'dependentId'

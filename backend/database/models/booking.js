@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.eventAssociation = this.belongsTo(models.Event, {
         // foreignKey: 'eventId',
-        as: 'event'
+        // as: 'event'
       });
       this.userAssociation = this.belongsTo(models.User, {
         // foreignKey: 'userId',
-        as: 'user'
+        // as: 'user'
       });
       // this.dependentAssociation = this.belongsToMany(models.Dependent, {
       //   through: models.Attend,
