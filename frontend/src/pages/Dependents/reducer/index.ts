@@ -6,7 +6,8 @@ export const slice = createSlice({
   initialState,
   reducers: {
     addKid: (state, action: PayloadAction<KidI>) => {
-      const id = state[state.length-1].id+1;
+      let id = 0;
+      if (state.length !== 0) { id = state[state.length-1].id+1;}
       action.payload.id = id;
       (state).push(action.payload);
     },

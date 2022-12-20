@@ -75,13 +75,14 @@ export default function AddCard() {
   }
   return (
     <>
-    <Card sx={{ width: 300, height: 340}}>
+    <Card sx={{ width: 350, minHeight: 350, display:'block', justifyContent:'center'}}>
       {!editable ? 
         (
         <>
             <CardMedia 
                 component="img"
                 height="300"
+                sx={{width: 300}}
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJPN1pXbTRiNH6Lvj8OYw8m7AA1jDtMRM1Ow&usqp=CAU"
                 alt="Add"
                 onClick={() => handleEdit()}>
@@ -99,7 +100,7 @@ export default function AddCard() {
         noValidate>
             <TextField required
               id="filled-basic"
-              label="Name"
+              label="First Name"
               variant="outlined"
               sx={{width: 262}}
               value={fname}
@@ -107,7 +108,7 @@ export default function AddCard() {
             ></TextField>
             <TextField required
               id="filled-basic"
-              label="Name"
+              label="Last Name"
               variant="outlined"
               sx={{width: 262}}
               value={lname}

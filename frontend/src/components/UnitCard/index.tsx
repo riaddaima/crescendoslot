@@ -44,7 +44,7 @@ export default function UnitCard(
   const dispatch = useAppDispatch();
   const kids = useAppSelector(kidsSelector);
 
-  const skid = kids.filter((kid : KidI)=>kid.id === kid.id)[0];
+  const skid = kids.filter((kidi : KidI)=>kidi.id === kid.id)[0];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSexe(event.target.value);
@@ -71,20 +71,26 @@ export default function UnitCard(
     dispatch(kidsApplier.actions.editKid(newKid));
   }
   return (
-    <Card sx={{width: 300, height: 340}}>
+    <Card sx={{width: 350, minHeight: 350}}>
       {!editable ? (
-        <> {kid.gender === "M"? (<CardMedia
-        component="img"
-        height="220"
-        image="https://static.vecteezy.com/system/resources/previews/000/652/388/non_2x/head-of-cute-little-boy-avatar-character-vector.jpg"
-        alt="Boy"
-      />) : (
-        <CardMedia
-        component="img"
-        height="220"
-        image="https://static.vecteezy.com/system/resources/previews/000/649/904/non_2x/head-of-cute-little-girl-avatar-character-vector.jpg"
-        alt="Girl"
-      />
+        <> {kid.gender === "M"? (<div style = {{display:'flex', justifyContent:'center'}}>
+          <CardMedia
+            component="img"
+            height="250"
+            image="..\..\..\public\boy.png"
+            sx={{width: 300, position: 150}}
+            alt="Boy"
+          />
+        </div>) : (
+          <div style = {{display:'flex', justifyContent:'center'}}>
+            <CardMedia
+              component="img"
+              height="250"
+              image="..\..\..\public\girl.png"
+              sx={{width: 300, position: 200}}
+              alt="Girl"
+            />
+          </div>
       )
       }
           
