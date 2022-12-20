@@ -13,7 +13,7 @@ const SidebarLink = styled(Link)`
     align-items: center;
     height: 3.75rem;
     font-size: 1.125rem;
-    padding: 2rem;
+    padding: 1.5rem;
     text-decoration: none;
     color: #ffffff;
     

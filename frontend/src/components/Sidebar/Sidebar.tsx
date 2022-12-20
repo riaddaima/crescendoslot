@@ -17,7 +17,7 @@ const Nav = styled.div`
 const SidebarNav = styled.div<{ sidebar: boolean }>`
     width: 250px;
     height: 100vh;
-    background-color: purple;
+    background-color: #7E4F9B;
     position: fixed;
     top: 0;
     left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
