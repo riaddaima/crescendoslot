@@ -16,13 +16,11 @@ const SidebarLink = styled(Link)`
     padding: 2rem;
     text-decoration: none;
     color: #ffffff;
-    z-index: 1000000;
     
 
     &:hover {
         background-color: #1f1f1b;
         border-left: 4px solid #6d44dc;
-        z-index: 1000000;
     }
 `;
 

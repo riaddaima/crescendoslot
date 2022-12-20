@@ -5,7 +5,7 @@ import { Stack, TextField, Grid, Box, Button } from "@mui/material";
 import StaticTimePicker from "../../components/StaticTimePicker";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { profileSelector } from "../../components/Profile/reducer/selector";
-
+import Sidebar from "../../components/Sidebar/Sidebar";
 const Home = () => {
   const profile = useAppSelector(profileSelector);
 
@@ -18,6 +18,7 @@ const Home = () => {
   };
 
   return (
+    <><Sidebar />
     <div>
       <h1>Welcome Home, {profile.firstName}</h1>
       <br />
@@ -44,7 +45,7 @@ const Home = () => {
           <br />
           <Button variant="contained">Create timeslot</Button>
       </Stack>
-    </div>
+    </div> </>
   );
 }
 
