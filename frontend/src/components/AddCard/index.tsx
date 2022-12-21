@@ -75,7 +75,7 @@ export default function AddCard() {
   }
   return (
     <>
-    <Card sx={{ width: 350, minHeight: 350, display:'block', justifyContent:'center'}}>
+    <Card sx={{ width: 350, minHeight: 370, display:'block', justifyContent:'center'}}>
       {!editable ? 
         (
         <>
@@ -85,7 +85,7 @@ export default function AddCard() {
                 sx={{width: 300}}
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJPN1pXbTRiNH6Lvj8OYw8m7AA1jDtMRM1Ow&usqp=CAU"
                 alt="Add"
-                onClick={() => handleEdit()}>
+                onClick={handleEdit}>
             </CardMedia>
            
         </>
@@ -95,7 +95,7 @@ export default function AddCard() {
           <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { mb: 2}
+          '& .MuiTextField-root': { mt: 2}
         }}
         noValidate>
             <TextField required

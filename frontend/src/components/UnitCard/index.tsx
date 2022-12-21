@@ -71,7 +71,7 @@ export default function UnitCard(
     dispatch(kidsApplier.actions.editKid(newKid));
   }
   return (
-    <Card sx={{width: 350, minHeight: 350}}>
+    <Card sx={{width: 350, minHeight: 350, display: 'block', justifyContent: 'center'}}>
       {!editable ? (
         <> {kid.gender === "M"? (<div style = {{display:'flex', justifyContent:'center'}}>
           <CardMedia
@@ -110,10 +110,11 @@ export default function UnitCard(
         </>
       ) : (
         <>
+          <CardContent>
               <Box
                 component="form"
                 sx={{
-                  '& .MuiTextField-root': { mb: 2, mt: 2 }
+                  '& .MuiTextField-root': { mt: 2}
                 }}
                 noValidate>
                 <TextField required
@@ -158,6 +159,7 @@ export default function UnitCard(
                   renderInput={(params) => <TextField {...params} />} />
               </LocalizationProvider>
             </Box>
+          </CardContent>
           <CardActions disableSpacing>
             <IconButton onClick={handleSave}>
               <SaveIcon />
