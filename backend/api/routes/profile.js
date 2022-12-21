@@ -6,7 +6,7 @@ const { verify } = require('../middlewares/auth');
 
 profileRouter.get('/', getAllProfiles);
 profileRouter.get('/:id', getProfileById);
-profileRouter.post('/', verify, postNewProfile);
+profileRouter.post('/', postNewProfile);
 profileRouter.put('/:id', verify, updateProfileById);
 
 module.exports = profileRouter;

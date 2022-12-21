@@ -11,7 +11,6 @@ const getUserProfile = async (id) => {
 
 const getUserProfileWithUser = async (userid) => {
   try {
-    console.log(userid);
     const { rows } = await db.query('SELECT * FROM users NATURAL JOIN profiles WHERE profiles.usr_id = $1', [userid]);
     return rows[0];
   } catch (error) {
@@ -30,7 +29,7 @@ const getUsersProfile = async () => {
 
 const createUserProfile = async (profile) => {
   try {
-    const { rows } = await db.query('INSERT INTO profiles (pro_gender, pro_issubbed, usr_id) VALUES ($1, $2, $3) RETURNING *', [profile.pro_gender, profile.pro_issubbed, profile.usr_id]);
+    const { rows } = await db.query('INSERT INTO profiles (pro_gender, pro_phone, pro_issubbed, usr_id) VALUES ($1, $2, $3, $4) RETURNING *', [profile.pro_gender, profile.pro_phone, profile.pro_issubbed, profile.usr_id]);
     return rows[0];
   } catch (error) {
     throw error;
@@ -38,8 +37,12 @@ const createUserProfile = async (profile) => {
 }
 
 const updateUserProfile = async (id, profile) => {
-  const { rows } = await db.query('UPDATE profiles SET (pro_gender, pro_issubbed) = ($1, $2) WHERE pro_id = $3 RETURNING *', [profile.pro_gender, profile.pro_issubbed, id]);
-  return rows[0];
+  try {
+    const { rows } = await db.query('UPDATE profiles SET (pro_gender, pro_phone, pro_issubbed) = ($1, $2, $3) WHERE pro_id = $4 RETURNING *', [profile.pro_gender, profile.pro_phone, profile.pro_issubbed, id]);
+    return rows[0];
+  } catch (error) {
+    throw error;
+  }
 }
 
 module.exports = {

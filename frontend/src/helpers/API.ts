@@ -20,7 +20,7 @@ let API: AxiosInstance = axios.create(defaultOptions);
 export const injectStore = (store: EnhancedStore) => {
   API.interceptors.request.use((config) => {
     config.headers = {
-      Authorization: store.getState().auth?.token,
+      Authorization: store.getState().auth?.jwt,
     };
     return config
   })

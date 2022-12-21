@@ -1,5 +1,5 @@
 const { OAuth2Client } = require('google-auth-library');
-const { getUser } = require('../services/user');
+const { createUser, getUser } = require('../services/user');
 const { getUserProfileWithUser } = require('../services/profile');
 
 const clientId = process.env.CLIENT_ID;
@@ -19,10 +19,12 @@ const login = async (bearerToken) => {
       const userid = payload['sub'];
 
       if (ticket) {
+        const user = await getUser(userid);
         const userProfile = await getUserProfileWithUser(userid);
-        if (userProfile) {
+        if (user && userProfile) {
           return {
             profile: {
+              userId: userid,
               firstName: userProfile.usr_fn,
               lastName: userProfile.usr_ln,
               email: userProfile.usr_email,
@@ -35,16 +37,26 @@ const login = async (bearerToken) => {
             token: bearerToken
           };
         }
+        if (!user && !userProfile) {
+          await createUser({
+            usr_id: userid,
+            usr_email: payload['email'],
+            usr_fn: payload['given_name'],
+            usr_ln: payload['family_name'],
+            usr_role: 'parent',
+          });
+        }
         return {
           profile: {
+            userId: userid,
             firstName: payload['given_name'],
             lastName: payload['family_name'],
             email: payload['email'],
             avatar: payload['picture'],
-            gender: 'Male',
+            gender: 'M',
             phoneNumber: '',
             isSubbedNewsletter: false,
-            role: 'Parent',
+            role: 'parent',
             newUser: true,
           },
           token: bearerToken

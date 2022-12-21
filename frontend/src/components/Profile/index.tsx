@@ -3,13 +3,13 @@ import { TextField, Box, Avatar, Button, InputLabel, Select, MenuItem, FormContr
 import { COLORS } from '../../colors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { profileSelector } from './reducer/selector';
-// import { Profile as ProfileI } from './reducer/state';
 import { Profile as ProfileI } from '../../interfaces/Profile';
 import { slice as profileApplier } from './reducer';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
+import { profileCreate } from './reducer/thunks';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -17,8 +17,7 @@ const Profile = () => {
   const profile = useAppSelector(profileSelector);
 
   const handleSetProfile = (profile: ProfileI) => {
-    dispatch(profileApplier.actions.setProfile({ ...profile, newUser: false }));
-    navigate('/');
+    dispatch(profileCreate(profile));
   }
   const isNonMobile = useMediaQuery("(min-width:600px)");
 

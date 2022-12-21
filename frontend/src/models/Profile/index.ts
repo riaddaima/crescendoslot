@@ -1,14 +1,19 @@
 import API from "../../helpers/API";
-import { ProfileResponse } from "./request-helper";
+import { Profile } from "../../interfaces/Profile";
+import { ProfileResponse, ProfileGetReponse } from "./request-helper";
 
 const PROFILE_ENDPOINT = "/profile";
 export class ProfileAPI {
 
-  static getProfile(userid: string): Promise<ProfileResponse> {
+  static getProfile(userid: string): Promise<ProfileGetReponse> {
     return API.get(PROFILE_ENDPOINT + "/" + userid);
   }
 
-  static updateProfile(profile: ProfileResponse): Promise<ProfileResponse> {
+  static createProfile(profile: Profile): Promise<ProfileResponse> {
+    return API.post(PROFILE_ENDPOINT, profile);
+  }
+
+  static updateProfile(profile: Profile): Promise<ProfileResponse> {
     return API.put(PROFILE_ENDPOINT, profile);
   }
 } 

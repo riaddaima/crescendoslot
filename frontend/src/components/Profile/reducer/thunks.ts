@@ -15,3 +15,10 @@ export const profileUpdate = createAsyncThunk(
     return ProfileAPI.updateProfile(profile);
   }
 );
+
+export const profileCreate = createAsyncThunk(
+  "profile/create",
+  (profile: Profile) => {
+    return ProfileAPI.createProfile(profile);
+  }
+);

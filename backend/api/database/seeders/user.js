@@ -7,6 +7,5 @@ module.exports = [{
   user_fn: 'Riad',
   usr_ln: 'Daima',
   usr_email: 'riaddaima1@gmail.com',
-  usr_phone: '+212693502372',
   usr_role: ROLE.PARENT
 }];
