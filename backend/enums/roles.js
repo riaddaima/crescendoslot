@@ -1,4 +1,4 @@
 module.exports = {
-  MANAGER: 'Manager',
-  PARENT: 'Parent',
+  MANAGER: 'manager',
+  PARENT: 'parent',
 };

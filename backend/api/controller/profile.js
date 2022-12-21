@@ -1,4 +1,4 @@
-const { getUserProfile, createUserProfile, updateUserProfile, getUsersProfile } = require('../services/profile');
+const { getUserProfileWithUser, createUserProfile, updateUserProfile, getUsersProfile } = require('../services/profile');
 
 const getAllProfiles = async (req, res) => {
   try {
@@ -11,8 +11,8 @@ const getAllProfiles = async (req, res) => {
 
 const getProfileById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const profile = await getUserProfile(id);
+    const { id: userid } = req.params;
+    const profile = await getUserProfileWithUser(userid);
     if (profile) {
       return res.status(200).json({ profile });
     }

@@ -1,16 +1,28 @@
-const { User, Profile } = require('../../database/models');
+const db = require('../database');
 
 const getUserProfile = async (id) => {
   try {
-    const profile = await Profile.findOne({
-      where: { userId: id },
-      raw: true,
-      include: {
-        model: User,
-        as: 'user'
-      }
-    });
-    return profile;
+    const { rows } = await db.query('SELECT * FROM profiles WHERE pro_id = $1', [id]);
+    return rows[0];
+  } catch (error) {
+    throw error;
+  }
+}
+
+const getUserProfileWithUser = async (userid) => {
+  try {
+    console.log(userid);
+    const { rows } = await db.query('SELECT * FROM users NATURAL JOIN profiles WHERE profiles.usr_id = $1', [userid]);
+    return rows[0];
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getUsersProfile = async () => {
+  try {
+    const { rows } = await db.query('SELECT * FROM profiles');
+    return rows;
   } catch (error) {
     throw error;
   }
@@ -18,37 +30,22 @@ const getUserProfile = async (id) => {
 
 const createUserProfile = async (profile) => {
   try {
-    const createdProfile = await Profile.create(profile);
-    return createdProfile;
+    const { rows } = await db.query('INSERT INTO profiles (pro_gender, pro_issubbed, usr_id) VALUES ($1, $2, $3) RETURNING *', [profile.pro_gender, profile.pro_issubbed, profile.usr_id]);
+    return rows[0];
   } catch (error) {
     throw error;
   }
 }
 
 const updateUserProfile = async (id, profile) => {
-  try {
-    const updatedProfile = await Profile.update(profile, {
-      where: { userId: id },
-    });
-    return updatedProfile;
-  } catch (error) {
-    throw error;
-  }
+  const { rows } = await db.query('UPDATE profiles SET (pro_gender, pro_issubbed) = ($1, $2) WHERE pro_id = $3 RETURNING *', [profile.pro_gender, profile.pro_issubbed, id]);
+  return rows[0];
 }
 
-const getUsersProfile = async () => {
-  try {
-    const profiles = await Profile.findAll({
-      raw: true,
-      include: {
-        model: User,
-        as: 'user'
-      }
-    });
-    return profiles;
-  } catch (error) {
-    throw error;
-  }
-}
-
-module.exports = { getUserProfile, createUserProfile, updateUserProfile, getUsersProfile };
+module.exports = {
+  getUserProfile,
+  getUsersProfile,
+  createUserProfile,
+  updateUserProfile,
+  getUserProfileWithUser
+};

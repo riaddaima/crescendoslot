@@ -28,6 +28,7 @@ const Profile = () => {
         onSubmit={handleSetProfile}
         initialValues={profile}
         validationSchema={checkoutSchema}
+        enableReinitialize={true}
       >
         {({
           values,
@@ -112,8 +113,8 @@ const Profile = () => {
                   name="gender"
                   onChange={handleChange}
                 >
-                  <MenuItem value={'Male'}>Male</MenuItem>
-                  <MenuItem value={'Female'}>Female</MenuItem>
+                  <MenuItem value={'M'}>Male</MenuItem>
+                  <MenuItem value={'F'}>Female</MenuItem>
                 </Select>
               </FormControl>
               <FormControl fullWidth sx={{ gridColumn: "span 2" }}>
@@ -124,7 +125,7 @@ const Profile = () => {
                 variant="filled"
                 type="text"
                 label="Role"
-                value={values.role}
+                value={values.role.charAt(0).toUpperCase() + values.role.slice(1)}
                 name="role"
                 sx={{ gridColumn: "span 4" }}
                 disabled

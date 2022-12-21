@@ -1,6 +1,5 @@
 const { OAuth2Client } = require('google-auth-library');
 const { getUser } = require('../services/user');
-const { User } = require('../../database/models/');
 
 const clientId = process.env.CLIENT_ID;
 
@@ -24,7 +23,7 @@ const verify = async (req, res, next) => {
       const userid = payload['sub'];
   
       if (ticket) {
-        const user = await User.findOne({ where: { id: userid }, raw: true });
+        const user = await getUser(userid);
         if (user) return next();
         throw new Error('User not found');
         /**

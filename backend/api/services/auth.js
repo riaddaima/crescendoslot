@@ -1,6 +1,6 @@
 const { OAuth2Client } = require('google-auth-library');
 const { getUser } = require('../services/user');
-const { getUserProfile } = require('../services/profile');
+const { getUserProfileWithUser } = require('../services/profile');
 
 const clientId = process.env.CLIENT_ID;
 
@@ -19,27 +19,34 @@ const login = async (bearerToken) => {
       const userid = payload['sub'];
 
       if (ticket) {
-        const user = await getUser(userid);
-        const userProfile = await getUserProfile(userid);
-        if (user) {
+        const userProfile = await getUserProfileWithUser(userid);
+        if (userProfile) {
           return {
-            ...user,
-            gender: userProfile.gender,
-            isSubbedNewsletter: userProfile.isSubbedNewsletter,
-            newUser: false,
+            profile: {
+              firstName: userProfile.usr_fn,
+              lastName: userProfile.usr_ln,
+              email: userProfile.usr_email,
+              avatar: payload['picture'],
+              phoneNumber: userProfile.usr_phone,
+              gender: userProfile.pro_gender,
+              isSubbedNewsletter: userProfile.pro_issubbed,
+              newUser: false,
+            },
             token: bearerToken
           };
         }
         return {
-          firstName: payload['given_name'],
-          lastName: payload['family_name'],
-          email: payload['email'],
-          avatar: payload['picture'],
-          gender: 'Male',
-          phoneNumber: '',
-          isSubbedNewsletter: false,
-          role: 'Parent',
-          newUser: true,
+          profile: {
+            firstName: payload['given_name'],
+            lastName: payload['family_name'],
+            email: payload['email'],
+            avatar: payload['picture'],
+            gender: 'Male',
+            phoneNumber: '',
+            isSubbedNewsletter: false,
+            role: 'Parent',
+            newUser: true,
+          },
           token: bearerToken
         };
       }

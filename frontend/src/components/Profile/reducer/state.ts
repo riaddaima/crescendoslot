@@ -5,9 +5,9 @@ export const initialState: Profile = {
   lastName: '',
   email: '',
   avatar: '',
-  gender: 'Male',
+  gender: 'M',
   phoneNumber: '',
   isSubbedNewsletter: false,
-  role: 'Parent',
+  role: 'parent',
   newUser: true
 };

@@ -1,13 +1,14 @@
 import React from 'react';
-import { useCookies } from 'react-cookie';
 import { Outlet, Navigate } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
+import { signupSelector } from '../Auth/reducer/selectors';
 
 const WithAuth = () => {
 
-  const [cookies, ] = useCookies(['jwt-token']);
+  const token = useAppSelector(signupSelector);
 
   const isAuthenticated = (): Boolean => {
-    if (cookies['jwt-token']) return true;
+    if (token) return true;
     return false;
   }
   

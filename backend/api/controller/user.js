@@ -2,7 +2,6 @@ const { createUser, getUser, updateUser, deleteUser, getUsers } = require('../se
 
 const getAllUsers = async (req, res) => {
   try {
-    console.log('oui');
     const users = await getUsers();
     res.status(200).json({ users });
   } catch (error) {
@@ -12,7 +11,6 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   try {
-    console.log('hein');
     const { id } = req.params;
     const user = await getUser(id);
     if (user) {
@@ -40,8 +38,8 @@ const postNewUser = async (req, res) => {
 const updateUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    await updateUser(id, req.body);
-    res.status(200).json({ user: req.body });
+    const updatedUser = await updateUser(id, req.body);
+    res.status(200).json({ user: updatedUser });
   } catch (error) {
     res.status(500).send(error.message);
   }

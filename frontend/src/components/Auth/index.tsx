@@ -1,14 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from 'react-cookie';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { CredentialResponse } from '../../interfaces/CredentialResponse';
 import './login.css';
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { authLogin } from './reducer/thunks';
-import { slice as profileApplier } from '../Profile/reducer';
-import jwtDecode from "jwt-decode";
-import { profileSelector } from "../Profile/reducer/selector";
 
 /**
  * @riaddaima
@@ -21,19 +16,12 @@ const clientId = import.meta.env.VITE_CLIENT_ID as string;
 const Login = () => {
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  // const [, setCookie] = useCookies(['jwt-token']);
-  const profile = useAppSelector(profileSelector);
-
-  const redirectToHome = () => navigate('/');
-  const redirectToCompleteProfile = () => navigate('/complete-profile');
 
   const onSuccess = (res: CredentialResponse) => {
     const { credential } = res;
     if (credential) {
+      console.log(credential);
       dispatch(authLogin(credential));
-      // setCookie('jwt-token', credential);
-      // const decodedjwt: any = jwtDecode(credential);
 
       // {
       //   "iss": "https://accounts.google.com",
@@ -51,14 +39,6 @@ const Login = () => {
       //   "exp": 1670704419,
       //   "jti": "a08cadcb2b4d80c37099960ff1b0841a97dd1f9b"
       // }
-      dispatch(profileApplier.actions.setProfile({
-        firstName: decodedjwt.given_name,
-        lastName: decodedjwt.family_name,
-        email: decodedjwt.email,
-        avatar: decodedjwt.picture,
-      }));
-      if (profile.newUser) redirectToCompleteProfile();
-      redirectToHome();
     }
   };
 

@@ -1,7 +1,7 @@
 import API from "../../helpers/API";
 import { LoginResponse } from "./request-helper";
 
-const LOGIN_ENDPOINT = "/login";
+const LOGIN_ENDPOINT = "auth/login";
 export class LoginAPI {
 
   static login(token: string | undefined): Promise<LoginResponse> {
