@@ -33,7 +33,8 @@ const NavIcon = styled(Link)`
     align-items: center;
     height: 5rem;
     font-size: 2rem;
-    margin-left: 1rem;  
+    margin-left: 1rem;
+    mergin-right: 1rem;
 `;
 
 const SidebarWrap = styled.div``;
@@ -53,7 +54,7 @@ const Sidebar: FC = () => {
             <SidebarNav sidebar={sidebar}>
                 <SidebarWrap>
                     <NavIcon style={{ color: 'white' }} to="#" onClick={showSidebar}>
-                        <AiOutlineClose />
+                        Crescendo
                     </NavIcon>
                     {SidebarData.map((item, index) => {
                         return <Submenu item={item} key={index} showSidebar={showSidebar} />;
