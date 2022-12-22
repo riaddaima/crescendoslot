@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -8,26 +8,28 @@ import Typography from "@mui/material/Typography";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from '@mui/icons-material/Save';
-import { Dayjs } from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Box, MenuItem, TextField } from "@mui/material";
-import { useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { kidsSelector } from '../../pages/Dependents/reducer/selector';
 import { slice as kidsApplier } from '../../pages/Dependents/reducer';
 import { KidI } from "../../pages/Dependents/reducer/state";
+import { COLORS } from "../../colors";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+
+
+import './styles.css';
 
 
 export default function UnitCard(
   kid
-: KidI) {
+    : KidI) {
   const [editable, setEditable] = useState(false);
-  const [sexe, setSexe] = React.useState(kid.gender);
+  const [sexe, setSexe] = useState(kid.gender);
   const [enteredFName, setEnteredFName] = useState(kid.fname);
   const [enteredLName, setEnteredLName] = useState(kid.lname);
-  const [value, setValue] = React.useState<Dayjs | null>(null);
+  const [dob, setDob] = useState(kid.dob);
 
 
 
@@ -39,12 +41,12 @@ export default function UnitCard(
     {
       value: 'M',
       label: 'Boy',
-    },{}
+    }, {}
   ];
   const dispatch = useAppDispatch();
   const kids = useAppSelector(kidsSelector);
 
-  const skid = kids.filter((kidi : KidI)=>kidi.id === kid.id)[0];
+  const skid = kids.filter((kidi: KidI) => kidi.id === kid.id)[0];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSexe(event.target.value);
@@ -60,107 +62,106 @@ export default function UnitCard(
 
   const handleSave = () => {
     setEditable(false);
-    const newKid : KidI = {
+    const newKid: KidI = {
       id: kid.id,
       fname: enteredFName,
       lname: enteredLName,
       gender: sexe,
-      age: 5 // static
+      dob,
+      age: 5 // static,
     }
 
     dispatch(kidsApplier.actions.editKid(newKid));
   }
   return (
-    <Card sx={{width: 350, minHeight: 350, display: 'block', justifyContent: 'center'}}>
+    <Card sx={{ width: 320, minHeight: 350, display: 'block', justifyContent: 'center' }}>
       {!editable ? (
-        <> {kid.gender === "M"? (<div style = {{display:'flex', justifyContent:'center'}}>
+        <> {kid.gender === "M" ? (<CardMedia
+          component="img"
+          sx={{ mt: 2, objectFit: "contain" }}
+          height="150"
+          image="/boy.png"
+          alt="Boy"
+        />) : (
           <CardMedia
             component="img"
-            height="250"
-            image="..\..\..\public\boy.png"
-            sx={{width: 300, position: 150}}
-            alt="Boy"
+            sx={{ mt: 2, objectFit: "contain", }}
+            height="150"
+            image="/girl.png"
+            alt="Girl"
           />
-        </div>) : (
-          <div style = {{display:'flex', justifyContent:'center'}}>
-            <CardMedia
-              component="img"
-              height="250"
-              image="..\..\..\public\girl.png"
-              sx={{width: 300, position: 200}}
-              alt="Girl"
-            />
-          </div>
-      )
-      }
-          
+        )
+        }
           <CardContent>
-            <Typography variant="h5" color="text.primary">
+            <div style={{ border: `0.5px solid ${COLORS.primaryColor}`, marginBottom: 3 }}></div>
+            <Typography variant="h5" color={COLORS.primaryColor} sx={{ marginTop: 4 }}>
               {kid.fname + " " + kid.lname}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <DeleteIcon onClick={() => handleDelete(kid)}/>
+            <IconButton aria-label="add to favorites" onClick={() => handleDelete(kid)}>
+              <DeleteIcon />
             </IconButton>
-            <IconButton aria-label="share">
-              <EditIcon onClick={handleEdit} />
+            <IconButton aria-label="share" onClick={handleEdit}>
+              <EditIcon />
             </IconButton>
           </CardActions>
         </>
       ) : (
         <>
           <CardContent>
-              <Box
-                component="form"
-                sx={{
-                  '& .MuiTextField-root': { mt: 2}
-                }}
-                noValidate>
+            <Box
+              component="form"
+              sx={{
+                m: 2,
+                '& .MuiTextField-root': { mb: 2, mt: 2 }
+              }}
+              noValidate>
+              <TextField required
+                id="filled-basic"
+                label="First Name"
+                variant="outlined"
+                value={enteredFName}
+                onChange={(e) => setEnteredFName(e.target.value)}
+                fullWidth
+              ></TextField>
+              <TextField required
+                id="filled-basic"
+                label="Last Name"
+                variant="outlined"
+                value={enteredLName}
+                onChange={(e) => setEnteredLName(e.target.value)}
+                fullWidth
+              ></TextField>
+              <div>
                 <TextField required
-                  id="filled-basic"
-                  label="First Name"
-                  variant="outlined"
-                  value={enteredFName}
-                  onChange={(e)=>setEnteredFName(e.target.value)}
-                  sx={{ width: 262 }}
-                ></TextField>
-                <TextField required
-                  id="filled-basic"
-                  label="Last Name"
-                  variant="outlined"
-                  value={enteredLName}
-                  onChange={(e)=>setEnteredLName(e.target.value)}
-                  sx={{ width: 262 }}
-                ></TextField>
-                <div>
-                  <TextField required
-                    id="outlined-select-gender"
-                    select
-                    label="Select"
-                    onChange={handleChange}
-                    value={sexe}
-                  sx={{ height: 50, width: 262, textAlign:"left"}}
-                  >
-                  {genders.map((option) => (
-                    <MenuItem key={option.value} value={option.value} sx={{ color: 'black', float: 'none' }}>
+                  id="outlined-select-gender"
+                  select
+                  label="Select"
+                  onChange={handleChange}
+                  value={sexe}
+                  sx={{ height: 50, textAlign: "left" }}
+                  fullWidth
+                >
+                  {genders.map((option, index) => (
+                    <MenuItem key={index} value={option.value} sx={{ color: 'black', float: 'none' }}>
                       {option.label}
                     </MenuItem>
                   ))}
                 </TextField>
               </div>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   label="Date of birth"
-                  value={value}
+                  value={dob}
                   onChange={(newValue) => {
-                    setValue(newValue);
-                  } }
-                  renderInput={(params) => <TextField {...params} />} />
+                    if (newValue) setDob(newValue);
+                  }}
+                  renderInput={(params) => <TextField fullWidth {...params} />} />
               </LocalizationProvider>
             </Box>
           </CardContent>
-          <CardActions disableSpacing>
+          <CardActions disableSpacing sx={{ bottom: 0 }}>
             <IconButton onClick={handleSave}>
               <SaveIcon />
             </IconButton>

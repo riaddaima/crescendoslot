@@ -1,15 +1,12 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import SaveIcon from '@mui/icons-material/Save';
-import { Dayjs } from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -17,6 +14,8 @@ import { useAppDispatch} from '../../app/hooks';
 import { slice as kidsApplier } from '../../pages/Dependents/reducer';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { KidI } from "../../pages/Dependents/reducer/state";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+
 
 
 export default function AddCard() {
@@ -24,7 +23,7 @@ export default function AddCard() {
   const [fname, setFName] = useState('');
   const [lname, setLName] = useState('');
   const [sexe, setSexe] = React.useState('');
-  const [value, setValue] = React.useState<Dayjs | null>(null);
+  const [dob, setDob] = React.useState(new Date());
 
   const dispatch = useAppDispatch();
   const genders = [
@@ -52,37 +51,38 @@ export default function AddCard() {
     setFName('');
     setLName('');
     setSexe('');
-    setValue(null);
+    setDob(new Date());
   }
 
   const handleSave = () => {
     setEditable(false);
-    
-    const kid : KidI = {
-      id: 3,  // static value that changes in reducer before insert
-      fname: fname,
-      lname: lname,
-      gender: sexe,
-      age: 3, // static value
 
+    if (dob) {
+      const kid : KidI = {
+        id: 3,  // static value that changes in reducer before insert
+        fname: fname,
+        lname: lname,
+        gender: sexe,
+        age: 3, // static value
+        dob
+      }
+      dispatch(kidsApplier.actions.addKid(kid));
+      setFName('');
+      setLName('');
+      setSexe('');
+      setDob(new Date());
     }
-
-    dispatch(kidsApplier.actions.addKid(kid));
-    setFName('');
-    setLName('');
-    setSexe('');
-    setValue(null);
   }
   return (
     <>
-    <Card sx={{ width: 350, minHeight: 370, display:'block', justifyContent:'center'}}>
+    <Card sx={{ width: 320, minHeight: 350, display:'block', justifyContent:'center'}}>
       {!editable ? 
         (
         <>
             <CardMedia 
                 component="img"
-                height="300"
-                sx={{width: 300}}
+                height="200"
+                sx={{ padding: "1em 1em 0 1em", objectFit: "contain", cursor: "pointer" }}
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJPN1pXbTRiNH6Lvj8OYw8m7AA1jDtMRM1Ow&usqp=CAU"
                 alt="Add"
                 onClick={handleEdit}>
@@ -102,7 +102,7 @@ export default function AddCard() {
               id="filled-basic"
               label="First Name"
               variant="outlined"
-              sx={{width: 262}}
+              fullWidth
               value={fname}
               onChange={(e)=>setFName(e.target.value)}
             ></TextField>
@@ -110,7 +110,7 @@ export default function AddCard() {
               id="filled-basic"
               label="Last Name"
               variant="outlined"
-              sx={{width: 262}}
+              fullWidth
               value={lname}
               onChange={(e)=>setLName(e.target.value)}
             ></TextField>
@@ -121,33 +121,34 @@ export default function AddCard() {
                 label="Select"
                 onChange={handleChange}
                 value={sexe}
-                sx={{height: 50, width:262, textAlign:"left"}}
+                sx={{height: 50, textAlign:"left"}}
+                fullWidth
               >
-                  {genders.map((option) => (
-                      <MenuItem key={option.value} value={option.value} sx={{color: 'black', float:'none'}}>
+                  {genders.map((option, index) => (
+                      <MenuItem key={index} value={option.value} sx={{color: 'black', float:'none'}}>
                         {option.label}
                       </MenuItem>
                     ))}
               </TextField>
             </div>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="Date of birth"
-                value={value}
+                value={dob}
                 onChange={(newValue) => {
-                  setValue(newValue);
+                  if (newValue) setDob(newValue);
                 }}
-                renderInput={(params) => <TextField {...params} />}
+                renderInput={(params) => <TextField fullWidth {...params} />}
               />
             </LocalizationProvider>
             </Box>
           </CardContent>
           <CardActions >
-            <IconButton>
-              <SaveIcon onClick = {handleSave}/>
+            <IconButton onClick={handleSave}>
+              <SaveIcon/>
             </IconButton>
-            <IconButton>
-              <CancelIcon onClick = {handleCancel}/>
+            <IconButton onClick={handleCancel}>
+              <CancelIcon />
             </IconButton>
           </CardActions>
         </>
