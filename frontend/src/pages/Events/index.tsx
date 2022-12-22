@@ -14,6 +14,7 @@ import {
   deleteCalendarEvent,
 } from './reducer/thunks';
 import { selectedEventsSelector } from '../../components/selectedEvents/reducer/selector';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 const Events = () => {
   const dispatch = useAppDispatch();
@@ -61,6 +62,7 @@ const Events = () => {
         </Box>
       </Box>
     </div>
+    
   );
 }
 
