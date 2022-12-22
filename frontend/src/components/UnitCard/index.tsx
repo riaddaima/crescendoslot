@@ -8,15 +8,15 @@ import Typography from "@mui/material/Typography";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from '@mui/icons-material/Save';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Box, MenuItem, TextField } from "@mui/material";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { kidsSelector } from '../../pages/Dependents/reducer/selector';
 import { slice as kidsApplier } from '../../pages/Dependents/reducer';
 import { KidI } from "../../pages/Dependents/reducer/state";
 import { COLORS } from "../../colors";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 
 
 import './styles.css';
@@ -41,7 +41,7 @@ export default function UnitCard(
     {
       value: 'M',
       label: 'Boy',
-    }, {}
+    }
   ];
   const dispatch = useAppDispatch();
   const kids = useAppSelector(kidsSelector);
@@ -154,10 +154,10 @@ export default function UnitCard(
                 <DatePicker
                   label="Date of birth"
                   value={dob}
-                  onChange={(newValue) => {
+                  onChange={(newValue: any) => {
                     if (newValue) setDob(newValue);
                   }}
-                  renderInput={(params) => <TextField fullWidth {...params} />} />
+                  renderInput={(params: any) => <TextField fullWidth {...params} />} />
               </LocalizationProvider>
             </Box>
           </CardContent>

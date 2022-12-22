@@ -5,8 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import SaveIcon from '@mui/icons-material/Save';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -14,7 +12,9 @@ import { useAppDispatch} from '../../app/hooks';
 import { slice as kidsApplier } from '../../pages/Dependents/reducer';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { KidI } from "../../pages/Dependents/reducer/state";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 
 
 
@@ -34,7 +34,7 @@ export default function AddCard() {
     {
       value: "M",
       label: "Boy"
-    }, {}
+    }
   ];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,10 +135,10 @@ export default function AddCard() {
               <DatePicker
                 label="Date of birth"
                 value={dob}
-                onChange={(newValue) => {
+                onChange={(newValue: any) => {
                   if (newValue) setDob(newValue);
                 }}
-                renderInput={(params) => <TextField fullWidth {...params} />}
+                renderInput={(params: any) => <TextField fullWidth {...params} />}
               />
             </LocalizationProvider>
             </Box>

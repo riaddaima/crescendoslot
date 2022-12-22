@@ -43,7 +43,7 @@ const Home = () => {
           <br />
           <Button variant="contained">Create timeslot</Button>
       </Stack>
-    </div> </>
+    </div>
   );
 }
 
