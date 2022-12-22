@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser } from './thunks';
+import { authLogin } from './thunks';
 import { initialState } from './state';
 
 export const slice = createSlice({
-  name: 'login',
+  name: 'auth',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.jwt = action.payload;
+      .addCase(authLogin.fulfilled, (state, action) => {
+        state.jwt = action.payload.token;
       })
-      .addCase(loginUser.rejected, (state, ) => {
+      .addCase(authLogin.rejected, (state, ) => {
         state.jwt = null;
       })
   },

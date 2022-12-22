@@ -1,11 +1,12 @@
 export interface Profile {
+  userId: string;
   firstName: string;
   lastName: string;
   email: string;
   avatar: string;
-  gender: 'Male' | 'Female';
+  gender: 'M' | 'F';
   phoneNumber: string;
   isSubbedNewsletter: boolean;
-  role: 'Manager' | 'Parent';
+  role: 'manager' | 'parent';
   newUser: boolean;
 }

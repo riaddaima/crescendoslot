@@ -3,13 +3,13 @@ import { TextField, Box, Avatar, Button, InputLabel, Select, MenuItem, FormContr
 import { COLORS } from '../../colors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { profileSelector } from './reducer/selector';
-// import { Profile as ProfileI } from './reducer/state';
 import { Profile as ProfileI } from '../../interfaces/Profile';
 import { slice as profileApplier } from './reducer';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
+import { profileCreate } from './reducer/thunks';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -17,8 +17,7 @@ const Profile = () => {
   const profile = useAppSelector(profileSelector);
 
   const handleSetProfile = (profile: ProfileI) => {
-    dispatch(profileApplier.actions.setProfile({ ...profile, newUser: false }));
-    navigate('/');
+    dispatch(profileCreate(profile));
   }
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -28,6 +27,7 @@ const Profile = () => {
         onSubmit={handleSetProfile}
         initialValues={profile}
         validationSchema={checkoutSchema}
+        enableReinitialize={true}
       >
         {({
           values,
@@ -112,8 +112,8 @@ const Profile = () => {
                   name="gender"
                   onChange={handleChange}
                 >
-                  <MenuItem value={'Male'}>Male</MenuItem>
-                  <MenuItem value={'Female'}>Female</MenuItem>
+                  <MenuItem value={'M'}>Male</MenuItem>
+                  <MenuItem value={'F'}>Female</MenuItem>
                 </Select>
               </FormControl>
               <FormControl fullWidth sx={{ gridColumn: "span 2" }}>
@@ -124,7 +124,7 @@ const Profile = () => {
                 variant="filled"
                 type="text"
                 label="Role"
-                value={values.role}
+                value={values.role.charAt(0).toUpperCase() + values.role.slice(1)}
                 name="role"
                 sx={{ gridColumn: "span 4" }}
                 disabled
