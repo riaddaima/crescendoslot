@@ -1,0 +1,9 @@
+.dependentpage {
+  margin: 1%;
+}
+
+@media only screen and (max-width: 695px) {
+  .MuiGrid-root {
+    justify-content: center;
+  }
+}
