@@ -34,7 +34,7 @@ export default function AddCard() {
     {
       value: "M",
       label: "Boy"
-    }, {}
+    }
   ];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

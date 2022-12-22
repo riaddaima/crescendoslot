@@ -41,7 +41,7 @@ export default function UnitCard(
     {
       value: 'M',
       label: 'Boy',
-    }, {}
+    }
   ];
   const dispatch = useAppDispatch();
   const kids = useAppSelector(kidsSelector);
