@@ -36,7 +36,7 @@ export const SidebarData: SidebarItem[] = [
     },
     {
         title: 'Events',
-        path: '/events',
+        path: '/',
         icon: <MdEventAvailable />
     },
     {

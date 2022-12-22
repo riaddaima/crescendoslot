@@ -5,6 +5,7 @@ import SidebarItem from '../../models/SidebarItem';
 
 type SidebarLinkProps = {
     item: SidebarItem;
+    showSidebar: () => void;
 };
 
 const SidebarLink = styled(Link)`
@@ -13,9 +14,10 @@ const SidebarLink = styled(Link)`
     align-items: center;
     height: 3.75rem;
     font-size: 1.125rem;
-    padding: 2rem;
+    padding: 1.5rem;
     text-decoration: none;
     color: #ffffff;
+    
 
     &:hover {
         background-color: #1f1f1b;
@@ -42,13 +44,16 @@ const DropdownLink = styled(Link)`
     }
 `;
 
-const Submenu: FC<SidebarLinkProps> = ({ item }) => {
+const Submenu: FC<SidebarLinkProps> = ({ item, showSidebar }) => {
     const [subnav, setSubnav] = useState(false);
     const showSubnav = () => setSubnav(!subnav);
 
     return (
         <>
-            <SidebarLink to={item.path} onClick={showSubnav}>
+            <SidebarLink to={item.path} onClick={() => {
+                showSubnav();
+                showSidebar();
+            }}>
                 <div>
                     {item.icon}
                     <SidebarLabel>{item.title}</SidebarLabel>

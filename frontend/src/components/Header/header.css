@@ -10,8 +10,22 @@
   border-bottom: 1px solid #7e4f9b;
 }
 
-.header li:first-child {
-  padding: 14px;
+.header li:nth-child(2) {
+  display: table-cell;
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.header li:nth-child(3) {
+  display: table-cell;
+  padding: 23px 0 0 0;
+  vertical-align: middle;
+}
+
+.header li:nth-child(4) {
+  display: table-cell;
+  padding: 23px;
+  vertical-align: middle;
 }
 
 .header li {
@@ -19,10 +33,14 @@
   display: block;
   color: #7E4F9B;
   text-align: center;
-  padding: 24px 24px 24px 0px;
+  /* padding: 24px 24px 24px 0px; */
   text-decoration: none;
 }
 
 .header li:last-child {
   float: right;
+}
+
+.header .email {
+  padding: 34px 0 0 0;
 }
