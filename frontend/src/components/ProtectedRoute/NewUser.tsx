@@ -6,7 +6,7 @@ import { profileSelector } from '../Profile/reducer/selector';
 const NewUser = () => {
 
   const { newUser } = useAppSelector(profileSelector);
-  
+
   return (
     newUser ? <Navigate to="/complete-profile" /> : <Outlet />
   );

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Login from './components/Login';
+import Login from './components/Auth';
 import WithAuth from './components/ProtectedRoute/WithAuth';
 import NewUser from './components/ProtectedRoute/NewUser';
 import Layout from './components/Layout/layout';

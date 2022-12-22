@@ -1,5 +1,4 @@
 const { OAuth2Client } = require('google-auth-library');
-// const { db } = require('../../database/models');
 const { getUser } = require('../services/user');
 
 const clientId = process.env.CLIENT_ID;

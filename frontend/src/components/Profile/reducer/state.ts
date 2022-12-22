@@ -1,13 +1,14 @@
 import { Profile } from '../../../interfaces/Profile';
 
 export const initialState: Profile = {
+  userId: '',
   firstName: '',
   lastName: '',
   email: '',
   avatar: '',
-  gender: 'Male',
+  gender: 'M',
   phoneNumber: '',
-  isSubbedNewsletter: true,
-  role: 'Parent',
+  isSubbedNewsletter: false,
+  role: 'parent',
   newUser: true
 };
