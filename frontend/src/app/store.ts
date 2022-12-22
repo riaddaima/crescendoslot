@@ -2,6 +2,7 @@ import { Action, configureStore, ThunkAction, combineReducers } from '@reduxjs/t
 
 import login from '../components/Login/reducer';
 import calendar from '../pages/Events/reducer';
+import kids from '../pages/Dependents/reducer'
 import selectedEvents from '../components/selectedEvents/reducer';
 import profile from '../components/Profile/reducer';
 import { injectStore } from '../helpers/API';
@@ -18,12 +19,16 @@ const rootReducer = combineReducers({
   calendar,
   selectedEvents,
   profile,
+  kids
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
   reducer: persistReducer(persistConfig, persistedReducer),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+  }),
 });
 
 injectStore(store);
