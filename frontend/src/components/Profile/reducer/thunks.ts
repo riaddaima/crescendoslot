@@ -4,9 +4,7 @@ import { ProfileAPI } from "../../../models/Profile";
 
 export const profileGet = createAsyncThunk(
   "profile/get",
-  (userid: string) => {
-    return ProfileAPI.getProfile(userid);
-  }
+  ProfileAPI.getProfile
 );
 
 export const profileUpdate = createAsyncThunk(

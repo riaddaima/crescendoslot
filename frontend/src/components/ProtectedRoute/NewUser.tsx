@@ -8,7 +8,7 @@ const NewUser = () => {
   const { newUser } = useAppSelector(profileSelector);
 
   return (
-    newUser ? <Navigate to="/complete-profile" /> : <Outlet />
+    newUser ? <Navigate to="/profile" /> : <Outlet />
   );
 };
 

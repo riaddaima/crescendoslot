@@ -9,30 +9,25 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from '@mui/icons-material/Save';
 import { Box, MenuItem, TextField } from "@mui/material";
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { kidsSelector } from '../../pages/Dependents/reducer/selector';
-import { slice as kidsApplier } from '../../pages/Dependents/reducer';
+import { useAppDispatch } from '../../app/hooks';
 import { KidI } from "../../pages/Dependents/reducer/state";
+import { deleteKid, updateKid } from "../../pages/Dependents/reducer/thunks";
 import { COLORS } from "../../colors";
 
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 
-
 import './styles.css';
+import dayjs from "dayjs";
 
+export default function UnitCard(kid: KidI) {
+  const dispatch = useAppDispatch();
 
-export default function UnitCard(
-  kid
-    : KidI) {
   const [editable, setEditable] = useState(false);
   const [sexe, setSexe] = useState(kid.gender);
   const [enteredFName, setEnteredFName] = useState(kid.fname);
   const [enteredLName, setEnteredLName] = useState(kid.lname);
   const [dob, setDob] = useState(kid.dob);
-
-
-
   const genders = [
     {
       value: 'F',
@@ -43,10 +38,7 @@ export default function UnitCard(
       label: 'Boy',
     }
   ];
-  const dispatch = useAppDispatch();
-  const kids = useAppSelector(kidsSelector);
 
-  const skid = kids.filter((kidi: KidI) => kidi.id === kid.id)[0];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSexe(event.target.value);
@@ -56,8 +48,8 @@ export default function UnitCard(
     setEditable(true);
   };
 
-  const handleDelete = (kid: KidI) => {
-    dispatch(kidsApplier.actions.removeKid(skid));
+  const handleDelete = () => {
+    dispatch(deleteKid(kid.id));
   }
 
   const handleSave = () => {
@@ -71,35 +63,40 @@ export default function UnitCard(
       age: 5 // static,
     }
 
-    dispatch(kidsApplier.actions.editKid(newKid));
+    dispatch(updateKid(newKid));
   }
   return (
-    <Card sx={{ width: 320, minHeight: 350, display: 'block', justifyContent: 'center' }}>
+    <Card sx={{ width: 320, minHeight: 350, display: 'block', justifyContent: 'center', border: `2px solid ${COLORS.primaryColor}` }}>
       {!editable ? (
         <> {kid.gender === "M" ? (<CardMedia
           component="img"
-          sx={{ mt: 2, objectFit: "contain" }}
+          sx={{ mt: 2, objectFit: "contain", marginTop: '78px' }}
           height="150"
           image="/boy.png"
           alt="Boy"
         />) : (
           <CardMedia
             component="img"
-            sx={{ mt: 2, objectFit: "contain", }}
+            sx={{ mt: 2, objectFit: "contain", marginTop: '78px' }}
             height="150"
             image="/girl.png"
             alt="Girl"
           />
         )
         }
-          <CardContent>
+          <CardContent sx={{ padding: 0 }}>
             <div style={{ border: `0.5px solid ${COLORS.primaryColor}`, marginBottom: 3 }}></div>
             <Typography variant="h5" color={COLORS.primaryColor} sx={{ marginTop: 4 }}>
               {kid.fname + " " + kid.lname}
             </Typography>
+            <Typography color={COLORS.primaryColor} >
+            {kid.age} Years old
+
+            </Typography>
+
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites" onClick={() => handleDelete(kid)}>
+            <IconButton aria-label="add to favorites" onClick={() => handleDelete()}>
               <DeleteIcon />
             </IconButton>
             <IconButton aria-label="share" onClick={handleEdit}>
@@ -150,10 +147,10 @@ export default function UnitCard(
                   ))}
                 </TextField>
               </div>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                   label="Date of birth"
-                  value={dob}
+                  value={dayjs(dob)}
                   onChange={(newValue: any) => {
                     if (newValue) setDob(newValue);
                   }}

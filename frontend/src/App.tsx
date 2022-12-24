@@ -20,9 +20,12 @@ function App() {
           <Routes>
             <Route element={<WithAuth />}>
               <Route element={<Layout />}>
-                <Route element={<Profile />} path="/complete-profile" />
+                <Route element={<Profile />} path="/profile" />
                 <Route element={<NewUser />}>
-                  <Route element={<Events />} path="/" />
+                  <Route element={<Home />} path="/" />
+                  <Route element={<Home />} path="/home" />
+                  <Route element={<Home />} path="/history" />
+                  <Route element={<Events />} path="/events" />
                   <Route element={<Dependents />} path="/dependents" />
                 </Route>
               </Route>

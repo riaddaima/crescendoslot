@@ -4,5 +4,4 @@ export interface ProfileResponse {
 }
 
 export interface ProfileGetReponse extends Profile {
-
 }

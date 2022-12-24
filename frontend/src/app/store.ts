@@ -2,9 +2,9 @@ import { Action, configureStore, ThunkAction, combineReducers } from '@reduxjs/t
 
 import login from '../components/Auth/reducer';
 import calendar from '../pages/Events/reducer';
-import kids from '../pages/Dependents/reducer'
+import dependents from '../pages/Dependents/reducer'
 import selectedEvents from '../components/selectedEvents/reducer';
-import profile from '../components/Profile/reducer';
+import userProfile from '../components/Profile/reducer';
 import { injectStore } from '../helpers/API';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -18,8 +18,8 @@ const rootReducer = combineReducers({
   login,
   calendar,
   selectedEvents,
-  profile,
-  kids
+  userProfile,
+  dependents
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

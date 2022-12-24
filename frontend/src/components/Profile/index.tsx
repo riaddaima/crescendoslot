@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextField, Box, Avatar, Button, InputLabel, Select, MenuItem, FormControl, FormControlLabel, Switch, Typography } from '@mui/material';
 import { COLORS } from '../../colors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { profileSelector } from './reducer/selector';
 import { Profile as ProfileI } from '../../interfaces/Profile';
-import { slice as profileApplier } from './reducer';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import { profileCreate } from './reducer/thunks';
+import { profileCreate, profileUpdate, profileGet } from './reducer/thunks';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -17,9 +16,17 @@ const Profile = () => {
   const profile = useAppSelector(profileSelector);
 
   const handleSetProfile = (profile: ProfileI) => {
-    dispatch(profileCreate(profile));
+    if (profile.newUser) {
+      dispatch(profileCreate(profile));
+    } else {
+      dispatch(profileUpdate(profile));
+    }
   }
   const isNonMobile = useMediaQuery("(min-width:600px)");
+
+  useEffect(() => {
+    dispatch(profileGet());
+  }, [dispatch]);
 
   return (
     <Box m="20px" p={2} sx={{ border: `1px solid ${COLORS.primaryColor}`, transform: isNonMobile ? 'translate(80%)' : undefined }} width={isNonMobile ? '35%' : undefined}>
@@ -124,7 +131,7 @@ const Profile = () => {
                 variant="filled"
                 type="text"
                 label="Role"
-                value={values.role.charAt(0).toUpperCase() + values.role.slice(1)}
+                value={values?.role?.charAt(0).toUpperCase() + values?.role?.slice(1)}
                 name="role"
                 sx={{ gridColumn: "span 4" }}
                 disabled

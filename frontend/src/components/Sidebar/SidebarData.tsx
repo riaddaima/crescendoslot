@@ -4,8 +4,9 @@ import {
     AiOutlineHistory,
     AiOutlineHome,
     AiOutlineMoneyCollect,
-    AiOutlineUser
+    AiOutlineUser,
 } from 'react-icons/ai';
+import { CgProfile } from 'react-icons/cg';
 import { MdEventAvailable } from 'react-icons/md';
 import { FaChild, FaCog, FaOpencart } from 'react-icons/fa';
 import SidebarItem from '../../models/SidebarItem';
@@ -13,7 +14,7 @@ import SidebarItem from '../../models/SidebarItem';
 export const SidebarData: SidebarItem[] = [
     {
         title: 'Home',
-        path: '/home',
+        path: '/',
         icon: <AiOutlineHome />,
         /* 
         @mehdi
@@ -36,7 +37,7 @@ export const SidebarData: SidebarItem[] = [
     },
     {
         title: 'Events',
-        path: '/',
+        path: '/events',
         icon: <MdEventAvailable />
     },
     {
@@ -51,7 +52,7 @@ export const SidebarData: SidebarItem[] = [
     },
     {
         title: 'Profile',
-        path: '/complete-profile',
-        icon: <FaCog />
+        path: '/profile',
+        icon: <CgProfile />
     }
 ];

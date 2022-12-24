@@ -1,20 +1,22 @@
-const { getUserProfileWithUser, createUserProfile, updateUserProfile, getUsersProfile } = require('../services/profile');
+const { getUserProfileWithUser, createUserProfile, updateUserProfile } = require('../services/profile');
 
-const getAllProfiles = async (req, res) => {
+const getUserProfile = async (req, res) => {
   try {
-    const profiles = await getUsersProfile();
-    res.status(200).json({ profiles });
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-}
-
-const getProfileById = async (req, res) => {
-  try {
-    const { id: userid } = req.params;
-    const profile = await getUserProfileWithUser(userid);
+    const { usr_id: userId } = req.user;
+    const profile = await getUserProfileWithUser(userId);
     if (profile) {
-      return res.status(200).json({ profile });
+      return res.status(200).json({ profile: {
+        userId: profile.usr_id,
+        firstName: profile.usr_fn,
+        lastName: profile.usr_ln,
+        email: profile.usr_email,
+        gender: profile.pro_gender,
+        phoneNumber: profile.pro_phone,
+        isSubbedNewsletter: profile.pro_issubbed,
+        userId: profile.usr_id,
+        role: profile.usr_role,
+        newUser: false
+      } });
     }
     res.status(404).send('Profile with the specified ID does not exists');
   } catch (error) {
@@ -47,15 +49,23 @@ const postNewProfile = async (req, res) => {
   }
 }
 
-const updateProfileById = async (req, res) => {
+const updateProfile = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { profile } = req.body;
-    const updatedProfile = await updateUserProfile(id, profile);
-    res.status(200).json({ profile: updatedProfile });
+    const {
+      gender: pro_gender,
+      phoneNumber: pro_phone,
+      isSubbedNewsletter: pro_issubbed,
+    } = req.body;
+    const { usr_id: userId } = req.user;
+    const updatedProfile = await updateUserProfile(userId, { pro_gender, pro_phone, pro_issubbed });
+    res.status(200).json({ profile: {
+      gender: updatedProfile.pro_gender,
+      phoneNumber: updatedProfile.pro_phone,
+      isSubbedNewsletter: updatedProfile.pro_issubbed,
+    }});
   } catch (error) {
     res.status(500).send(error.message);
   }
 }
 
-module.exports = { getAllProfiles, getProfileById, postNewProfile, updateProfileById };
+module.exports = { getUserProfile, postNewProfile, updateProfile };

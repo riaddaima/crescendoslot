@@ -1,17 +1,17 @@
 const db = require('../database');
 
-const getUserProfile = async (id) => {
+const getUserProfile = async (userId) => {
   try {
-    const { rows } = await db.query('SELECT * FROM profiles WHERE pro_id = $1', [id]);
+    const { rows } = await db.query('SELECT * FROM profiles WHERE usr_id = $1', [userId]);
     return rows[0];
   } catch (error) {
     throw error;
   }
 }
 
-const getUserProfileWithUser = async (userid) => {
+const getUserProfileWithUser = async (userId) => {
   try {
-    const { rows } = await db.query('SELECT * FROM users NATURAL JOIN profiles WHERE profiles.usr_id = $1', [userid]);
+    const { rows } = await db.query('SELECT * FROM users NATURAL JOIN profiles WHERE profiles.usr_id = $1', [userId]);
     return rows[0];
   } catch (error) {
     throw error;
@@ -36,9 +36,9 @@ const createUserProfile = async (profile) => {
   }
 }
 
-const updateUserProfile = async (id, profile) => {
+const updateUserProfile = async (userId, profile) => {
   try {
-    const { rows } = await db.query('UPDATE profiles SET (pro_gender, pro_phone, pro_issubbed) = ($1, $2, $3) WHERE pro_id = $4 RETURNING *', [profile.pro_gender, profile.pro_phone, profile.pro_issubbed, id]);
+    const { rows } = await db.query('UPDATE profiles SET (pro_gender, pro_phone, pro_issubbed) = ($1, $2, $3) WHERE usr_id = $4 RETURNING *', [profile.pro_gender, profile.pro_phone, profile.pro_issubbed, userId]);
     return rows[0];
   } catch (error) {
     throw error;
