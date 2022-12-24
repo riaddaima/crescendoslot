@@ -1,0 +1,1 @@
+import { KidI } from '../../pages/Dependents/reducer/state';
