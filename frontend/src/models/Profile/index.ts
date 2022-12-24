@@ -5,8 +5,8 @@ import { ProfileResponse, ProfileGetReponse } from "./request-helper";
 const PROFILE_ENDPOINT = "/profile";
 export class ProfileAPI {
 
-  static getProfile(userid: string): Promise<ProfileGetReponse> {
-    return API.get(PROFILE_ENDPOINT + "/" + userid);
+  static getProfile(): Promise<ProfileResponse> {
+    return API.get(PROFILE_ENDPOINT);
   }
 
   static createProfile(profile: Profile): Promise<ProfileResponse> {

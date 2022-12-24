@@ -7,7 +7,7 @@ export const authLogin = createAsyncThunk(
   async (token: string | undefined, thunkAPI) => {
     const response = await LoginAPI.login(token);
     thunkAPI.dispatch(ProfileApplier.actions.setProfile(response.profile));
-    if (response.profile.newUser) window.location.href = '/complete-profile';
+    if (response.profile.newUser) window.location.href = '/profile';
     else window.location.href = '/';
     return response;
   }

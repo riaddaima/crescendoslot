@@ -12,7 +12,7 @@ const SidebarLink = styled(Link)`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 3.75rem;
+    height: 0.75rem;
     font-size: 1.125rem;
     padding: 1.5rem;
     text-decoration: none;
@@ -33,7 +33,7 @@ const DropdownLink = styled(Link)`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 3.75rem;
+    height: 0.75rem;
     font-size: 1.125rem;
     padding-left: 3rem;
     text-decoration: none;
