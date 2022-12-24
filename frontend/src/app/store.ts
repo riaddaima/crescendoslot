@@ -2,7 +2,7 @@ import { Action, configureStore, ThunkAction, combineReducers } from '@reduxjs/t
 
 import login from '../components/Auth/reducer';
 import calendar from '../pages/Events/reducer';
-import kids from '../pages/Dependents/reducer'
+import dependents from '../pages/Dependents/reducer'
 import selectedEvents from '../components/selectedEvents/reducer';
 import profile from '../components/Profile/reducer';
 import { injectStore } from '../helpers/API';
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   calendar,
   selectedEvents,
   profile,
-  kids
+  dependents
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

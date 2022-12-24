@@ -14,7 +14,13 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { KidI } from "../../pages/Dependents/reducer/state";
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { createKid } from "../../pages/Dependents/reducer/thunks";
+import dayjs from "dayjs";
+import { DependentRequest } from "../../models/Dependent/request-helper";
+
 
 
 
@@ -41,36 +47,34 @@ export default function AddCard() {
     setSexe(event.target.value);
   };
 
-  const handleEdit = () => {
-    setEditable(true);
-  }
-
-  const handleCancel = () => {
-    setEditable(false);
-
+  const clearForm = () => {
     setFName('');
     setLName('');
     setSexe('');
     setDob(new Date());
   }
 
+  const handleEdit = () => {
+    setEditable(true);
+  }
+
+  const handleCancel = () => {
+    setEditable(false);
+    clearForm();
+  }
+
   const handleSave = () => {
     setEditable(false);
 
     if (dob) {
-      const kid : KidI = {
-        id: 3,  // static value that changes in reducer before insert
+      const newKid: DependentRequest = {
         fname: fname,
         lname: lname,
         gender: sexe,
-        age: 3, // static value
         dob
       }
-      dispatch(kidsApplier.actions.addKid(kid));
-      setFName('');
-      setLName('');
-      setSexe('');
-      setDob(new Date());
+      dispatch(createKid(newKid));
+      clearForm();
     }
   }
   return (
@@ -131,10 +135,10 @@ export default function AddCard() {
                     ))}
               </TextField>
             </div>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 label="Date of birth"
-                value={dob}
+                value={dayjs(dob)}
                 onChange={(newValue: any) => {
                   if (newValue) setDob(newValue);
                 }}

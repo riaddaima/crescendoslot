@@ -1,25 +1,51 @@
-import {KidI, initialState} from"./state";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { initialState, KidI } from"./state";
+import { createSlice } from "@reduxjs/toolkit";
+
+import {
+  getKids,
+  getKid,
+  createKid,
+  updateKid,
+  deleteKid
+} from './thunks';
 
 export const slice = createSlice({
-  name: 'kids',
+  name: 'dependents',
   initialState,
-  reducers: {
-    addKid: (state, action: PayloadAction<KidI>) => {
-      let id = 0;
-      if (state.length !== 0) { id = state[state.length-1].id+1;}
-      action.payload.id = id;
-      (state).push(action.payload);
-    },
-    removeKid: (state, action: PayloadAction<KidI>) => {
-      const kidIndex = (state).findIndex((kid: KidI) => kid.id === action.payload.id);
-      state.splice(kidIndex, 1);
-    },
-    editKid: (state, action: PayloadAction<KidI>) => {
-        const kidIndex = (state).findIndex((kid: KidI) => kid.id === action.payload.id);
-        state[kidIndex] = action.payload;
-    }
-  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getKids.fulfilled, (state, action) => {
+        state.kids = action.payload;
+      })
+      .addCase(getKids.rejected, (state, ) => {
+        state.kids = [...state.kids];
+      })
+      .addCase(getKid.fulfilled, (state, action) => {
+        state.kids = [...state.kids, action.payload];
+      })
+      .addCase(getKid.rejected, (state, ) => {
+        state.kids = [...state.kids];
+      })
+      .addCase(createKid.fulfilled, (state, action) => {
+        state.kids = [...state.kids, action.payload];
+      })
+      .addCase(createKid.rejected, (state, ) => {
+        state.kids = [...state.kids];
+      })
+      .addCase(updateKid.fulfilled, (state, action) => {
+        state.kids = [...state.kids.filter((kid: KidI) => kid.id !== action.payload.id), action.payload];
+      })
+      .addCase(updateKid.rejected, (state, ) => {
+        state.kids = [...state.kids];
+      })
+      .addCase(deleteKid.fulfilled, (state, action) => {
+        state.kids = [...state.kids.filter((kid: KidI) => kid.id !== action.payload.id)];
+      })
+      .addCase(deleteKid.rejected, (state, ) => {
+        state.kids = [...state.kids];
+      })
+  }
 });
 
 export default slice.reducer;
