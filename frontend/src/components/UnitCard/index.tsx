@@ -66,29 +66,34 @@ export default function UnitCard(kid: KidI) {
     dispatch(updateKid(newKid));
   }
   return (
-    <Card sx={{ width: 320, minHeight: 350, display: 'block', justifyContent: 'center' }}>
+    <Card sx={{ width: 320, minHeight: 350, display: 'block', justifyContent: 'center', border: `2px solid ${COLORS.primaryColor}` }}>
       {!editable ? (
         <> {kid.gender === "M" ? (<CardMedia
           component="img"
-          sx={{ mt: 2, objectFit: "contain" }}
+          sx={{ mt: 2, objectFit: "contain", marginTop: '78px' }}
           height="150"
           image="/boy.png"
           alt="Boy"
         />) : (
           <CardMedia
             component="img"
-            sx={{ mt: 2, objectFit: "contain", }}
+            sx={{ mt: 2, objectFit: "contain", marginTop: '78px' }}
             height="150"
             image="/girl.png"
             alt="Girl"
           />
         )
         }
-          <CardContent>
+          <CardContent sx={{ padding: 0 }}>
             <div style={{ border: `0.5px solid ${COLORS.primaryColor}`, marginBottom: 3 }}></div>
             <Typography variant="h5" color={COLORS.primaryColor} sx={{ marginTop: 4 }}>
               {kid.fname + " " + kid.lname}
             </Typography>
+            <Typography color={COLORS.primaryColor} >
+            {kid.age} Years old
+
+            </Typography>
+
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites" onClick={() => handleDelete()}>
