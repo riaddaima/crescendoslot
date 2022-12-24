@@ -7,13 +7,12 @@ import {
 } from './request-helper';
 import { events } from '../../data/mock/events';
 
-const CALENDAR_EVENT_ENDPOINT = '/calendar/events';
+const CALENDAR_EVENT_ENDPOINT = '/events';
 export class CalendarEventAPI {
   static getList(): Promise<CalendarEventResponse[]> {
-    return Promise.all(events);
-    // return API.get(
-    //   CALENDAR_EVENT_ENDPOINT
-    // );
+    return API.get(
+      CALENDAR_EVENT_ENDPOINT
+    );
   }
 
   static get(uuid: number): Promise<CalendarEventResponse> {

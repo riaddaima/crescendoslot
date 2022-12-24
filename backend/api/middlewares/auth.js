@@ -24,7 +24,10 @@ const verify = async (req, res, next) => {
   
       if (ticket) {
         const user = await getUser(userid);
-        if (user) return next();
+        if (user) {
+          req.user = user;
+          return next();
+        }
         throw new Error('User not found');
         /**
          * @riaddaima

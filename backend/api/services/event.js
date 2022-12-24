@@ -2,7 +2,7 @@ const db = require('../database');
 
 const getEvents = async (userId) => {
   try {
-    const { rows } = await db.query('SELECT events.*, count(evt_id) as "currentCapacity" from events natural join attendings group by (evt_id)');
+    const { rows } = await db.query('select e1.*, count(attendings.evt_id) as "evt_currcapacity", (select count(usr_id) from attendings where evt_id = e1.evt_id and usr_id = $1) > 0 as "booked" from events e1 left outer join attendings on e1.evt_id = attendings.evt_id group by (e1.evt_id)', [userId]);
     return rows;
   } catch (error) {
     throw error;
