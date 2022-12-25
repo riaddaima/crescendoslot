@@ -13,6 +13,9 @@ export const slice = createSlice({
     removeEvent: (state, action: PayloadAction<EventApi>) => {
       const eventIndex = (state.events as EventApi[]).findIndex((event: EventApi) => event.id === action.payload.id);
       state.events.splice(eventIndex, 1);
+    },
+    resetState: (state) => {
+      state.events = [];
     }
   },
 });

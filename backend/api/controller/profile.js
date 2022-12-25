@@ -4,18 +4,30 @@ const getUserProfile = async (req, res) => {
   try {
     const { usr_id: userId } = req.user;
     const profile = await getUserProfileWithUser(userId);
-    if (profile) {
+    if (profile.pro_id) {
       return res.status(200).json({ profile: {
-        userId: profile.usr_id,
+        userId,
         firstName: profile.usr_fn,
         lastName: profile.usr_ln,
         email: profile.usr_email,
         gender: profile.pro_gender,
         phoneNumber: profile.pro_phone,
         isSubbedNewsletter: profile.pro_issubbed,
-        userId: profile.usr_id,
         role: profile.usr_role,
         newUser: false
+      } });
+    } else {
+      return res.status(200).json({ profile: {
+        userId,
+        firstName: profile.usr_fn,
+        lastName: profile.usr_ln,
+        email: profile.usr_email,
+        role: profile.usr_role,
+        gender: 'M',
+        phoneNumber: '',
+        isSubbedNewsletter: false,
+        role: 'parent',
+        newUser: true
       } });
     }
     res.status(404).send('Profile with the specified ID does not exists');

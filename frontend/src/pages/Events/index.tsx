@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import Calendar from '../../components/Calendar';
-import Header from '../../components/Header';
 import SelectedEvents from '../../components/selectedEvents';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -14,13 +13,17 @@ import {
   deleteCalendarEvent,
 } from './reducer/thunks';
 import { selectedEventsSelector } from '../../components/selectedEvents/reducer/selector';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import BookingForm from '../../components/Booking';
+import Message from '../../components/Message';
+
 
 const Events = () => {
   const dispatch = useAppDispatch();
   const selectedEvents = useAppSelector(selectedEventsSelector);
   const events = useAppSelector(calendarEventsSelector);
   const [eventsCopy, setEventsCopy] = useState(events);
+
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     dispatch(getCalendarEvents());
@@ -44,8 +47,18 @@ const Events = () => {
     dispatch(deleteCalendarEvent(eventsCopy[index]));
   };
 
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setShowMessage(false);
+  };
+
+
   return (
     <div>
+      <Message message='You successfully booked the events!' open={showMessage} handleClose={handleClose} />
       <Box sx={{ p: 3 }}>
         <Box display="flex" justifyContent="space-between" maxHeight={845}>
           {selectedEvents.events.length !== 0 ? <SelectedEvents /> : <></>}
@@ -60,9 +73,10 @@ const Events = () => {
             />
           </Box>
         </Box>
+        {selectedEvents.events.length !== 0 && <BookingForm setShowMessage={setShowMessage} />}
       </Box>
     </div>
-    
+
   );
 }
 

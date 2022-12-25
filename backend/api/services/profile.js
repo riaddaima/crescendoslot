@@ -11,7 +11,7 @@ const getUserProfile = async (userId) => {
 
 const getUserProfileWithUser = async (userId) => {
   try {
-    const { rows } = await db.query('SELECT * FROM users NATURAL JOIN profiles WHERE profiles.usr_id = $1', [userId]);
+    const { rows } = await db.query('SELECT * FROM users LEFT OUTER JOIN profiles on users.usr_id = $1', [userId]);
     return rows[0];
   } catch (error) {
     throw error;
