@@ -4,7 +4,6 @@ const getUserProfile = async (req, res) => {
   try {
     const { usr_id: userId } = req.user;
     const profile = await getUserProfileWithUser(userId);
-    console.log(profile);
     if (profile.pro_id) {
       return res.status(200).json({ profile: {
         userId,

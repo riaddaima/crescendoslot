@@ -9,7 +9,6 @@ const bookEvent = async (req, res) => {
       const booking = await createBooking({ evt_id: event.id, usr_id: userId, bk_hascancelled: false, bk_iswaitlist: false });
       dependents.forEach(async (dependent) => {
         const attend = await createAttend({ evt_id: event.id, usr_id: userId, dep_id: dependent.id });
-        console.log(event, dependent);
       });
     });
     res.status(201).json({ message: 'Booking successful' });
