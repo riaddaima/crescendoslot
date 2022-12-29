@@ -13,7 +13,7 @@
     "@fullcalendar/timegrid": "^5.11.0",
     "@mui/icons-material": "^5.10.16",
     "@mui/lab": "^5.0.0-alpha.86",
-    "@mui/material": "^5.10.17",
+    "@mui/material": "^5.11.1",
     "@mui/x-date-pickers": "^5.0.12",
     "@react-oauth/google": "^0.2.2",
     "@reduxjs/toolkit": "^1.8.1",
