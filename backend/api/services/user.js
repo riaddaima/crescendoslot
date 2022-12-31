@@ -2,7 +2,7 @@ const db = require('../database');
 
 const createUser = async (user) => {
   try {
-    const { rows } = await db.query('INSERT INTO users (usr_id, usr_fn, usr_ln, usr_email, usr_role) VALUES ($1, $2, $3, $4, $5) RETURNING *', [user.usr_id, user.usr_fn, user.usr_ln, user.usr_email, user.usr_role]);
+    const { rows } = await db.query('INSERT INTO users (usr_id, usr_fn, usr_ln, usr_email, usr_role, usr_avatar) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [user.usr_id, user.usr_fn, user.usr_ln, user.usr_email, user.usr_role, user.usr_avatar]);
     return rows[0];
   } catch (error) {
     throw error;

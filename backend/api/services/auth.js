@@ -28,9 +28,8 @@ const login = async (bearerToken) => {
               firstName: userProfile.usr_fn,
               lastName: userProfile.usr_ln,
               email: userProfile.usr_email,
-              avatar: payload['picture'],
+              avatar: userProfile.usr_avatar,
               phoneNumber: userProfile.usr_phone,
-              gender: userProfile.pro_gender,
               isSubbedNewsletter: userProfile.pro_issubbed,
               newUser: false,
             },
@@ -44,6 +43,7 @@ const login = async (bearerToken) => {
             usr_fn: payload['given_name'],
             usr_ln: payload['family_name'],
             usr_role: 'parent',
+            usr_avatar: payload['picture'],
           });
         }
         return {
@@ -53,7 +53,6 @@ const login = async (bearerToken) => {
             lastName: payload['family_name'],
             email: payload['email'],
             avatar: payload['picture'],
-            gender: 'M',
             phoneNumber: '',
             isSubbedNewsletter: false,
             role: 'parent',
