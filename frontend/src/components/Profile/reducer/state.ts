@@ -11,7 +11,6 @@ export const initialState: profileState = {
     lastName: '',
     email: '',
     avatar: '',
-    gender: 'M',
     phoneNumber: '',
     isSubbedNewsletter: false,
     role: 'parent',

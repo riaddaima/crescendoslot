@@ -4,7 +4,6 @@ export interface Profile {
   lastName: string;
   email: string;
   avatar: string;
-  gender: 'M' | 'F';
   phoneNumber: string;
   isSubbedNewsletter: boolean;
   role: 'manager' | 'parent';

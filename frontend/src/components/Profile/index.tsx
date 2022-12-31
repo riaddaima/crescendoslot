@@ -29,7 +29,7 @@ const Profile = () => {
   }, [dispatch]);
 
   return (
-    <Box m="20px" p={2} sx={{ border: `1px solid ${COLORS.primaryColor}`, transform: isNonMobile ? 'translate(80%)' : undefined }} width={isNonMobile ? '35%' : undefined}>
+    <Box m="20px" p={2} sx={{ border: `1px solid ${COLORS.primaryColor}`, transform: isNonMobile ? 'translate(82%)' : undefined }} width={isNonMobile ? '35%' : undefined}>
       <Formik
         onSubmit={handleSetProfile}
         initialValues={profile}
@@ -110,19 +110,6 @@ const Profile = () => {
                 sx={{ gridColumn: "span 4" }}
                 placeholder="+212600000000"
               />
-              <FormControl fullWidth sx={{ gridColumn: "span 2", textAlign: 'left' }}>
-                <InputLabel>Gender</InputLabel>
-                <Select
-                  fullWidth
-                  value={values.gender}
-                  label="gender"
-                  name="gender"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={'M'}>Male</MenuItem>
-                  <MenuItem value={'F'}>Female</MenuItem>
-                </Select>
-              </FormControl>
               <FormControl fullWidth sx={{ gridColumn: "span 2" }}>
                 <FormControlLabel control={<Switch name='isSubbedNewsletter' onChange={handleChange} checked={values.isSubbedNewsletter} />} label="Sign up for a monthly newsletter!" />
               </FormControl>
