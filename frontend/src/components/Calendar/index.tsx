@@ -9,12 +9,14 @@ import CALENDAR from "../../constants/calendar";
 import { CalendarEvent } from '../../models/CalendarEvent/types';
 import { useAppDispatch } from '../../app/hooks';
 import { slice as selectedEventApplier } from '../selectedEvents/reducer';
-import { Button, Card, CardActions, CardContent, CardMedia, Tooltip, Typography, IconButton } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardMedia, Tooltip, Typography, IconButton, useMediaQuery } from '@mui/material';
 import { COLORS } from '../../colors';
 import { EventApi } from '@fullcalendar/core';
 import moment from 'moment-timezone';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import listPlugin from '@fullcalendar/list';
+import './styles.css';
 
 interface CalendarProps {
   events: EventSourceInput;
@@ -35,7 +37,17 @@ const Calendar = ({
 }: CalendarProps) => {
   const dispatch = useAppDispatch();
   const [showBooked, setShowBooked] = useState(false);
+  const calendarRef = React.useRef<FullCalendar>(null);
 
+  const isNonMobile = useMediaQuery("(min-width:900px)");
+
+  React.useEffect(() => {
+    if (isNonMobile) {
+      calendarRef.current?.getApi().changeView('timeGridWeek');
+    } else {
+      calendarRef.current?.getApi().changeView('listWeek');
+    }
+  }, [isNonMobile]);
   const handleDateSelect = (selectInfo: DateSelectArg) => {
 
     /**
@@ -146,11 +158,11 @@ const Calendar = ({
 
   return (
     <FullCalendar
-      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+      plugins={[listPlugin, dayGridPlugin, timeGridPlugin, interactionPlugin]}
       headerToolbar={{
         left: 'prev,next today',
         center: 'title',
-        right: 'switchBooked dayGridMonth,timeGridWeek,timeGridDay',
+        right: `switchBooked ${isNonMobile && 'dayGridMonth,timeGridWeek,timeGridDay'}`,
       }}
       customButtons={{
         switchBooked: {
@@ -166,7 +178,8 @@ const Calendar = ({
           },
         },
       }}
-      initialView='timeGridWeek'
+      initialView={isNonMobile ? 'timeGridWeek' : 'listWeek'}
+      ref={calendarRef}
       slotMinTime={CALENDAR.MIN_TIME}
       slotMaxTime={CALENDAR.MAX_TIME}
       height="auto"
