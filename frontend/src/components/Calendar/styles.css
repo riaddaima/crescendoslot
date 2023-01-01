@@ -9,7 +9,7 @@
     padding: 5px 0;
   }
 
-  .fc-toolbar-chunk > * {
+  .fc-toolbar-chunk>* {
     margin: 6px;
   }
 }
@@ -19,3 +19,20 @@
     display: none;
   }
 }
+
+.fc-timegrid-event {
+  /* border-color: rgb(126, 79, 155);
+  background-color: #8E73C3; */
+  padding: 7px;
+}
+
+/* .wrapper {
+  display: flex;
+}
+
+.vertical {
+  height: 100%;
+  width: 4px;
+  background-color: #7E4F9B;
+  margin-right: 7px;
+} */
