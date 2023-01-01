@@ -88,12 +88,17 @@ const Calendar = ({
   function renderInnerContent(innerProps: any) {
     return (
       <div className='fc-event-main-frame'>
-        {innerProps.timeText &&
-          <div className='fc-event-time'>{innerProps.timeText}</div>
-        }
-        <div className='fc-event-title-container'>
-          <div className='fc-event-title fc-sticky'>
-            {innerProps.event.title || <Fragment>&nbsp;</Fragment>}
+        <div className="wrapper">
+          <div className="vertical"></div>
+          <div>
+            <div className='fc-event-title-container'>
+              <div className='fc-event-title fc-sticky'>
+                {innerProps.event.title || <Fragment>&nbsp;</Fragment>}
+              </div>
+            </div>
+            {innerProps.timeText &&
+              <div className='fc-event-time'>{innerProps.timeText}</div>
+            }
           </div>
         </div>
       </div>
@@ -119,7 +124,7 @@ const Calendar = ({
             {moment(event.start).format(" MMMM D [@] hh:mm A [-] ") + moment(event.end).format("hh:mm A")}
           </Typography>
           <Typography variant="h5" component="div">
-            <IconButton edge="end" aria-label="time" sx={{ padding: 0, marginRight: 1/2 }}>
+            <IconButton edge="end" aria-label="time" sx={{ padding: 0, marginRight: 1 / 2 }}>
               <MusicNoteIcon sx={{ fontSize: 16, color: 'black' }} />
             </IconButton>
             {event.title}
@@ -148,8 +153,9 @@ const Calendar = ({
       <Tooltip componentsProps={{
         tooltip: {
           sx: {
-            backgroundColor: COLORS.calendarEventColor,
-            padding: 1
+            backgroundColor: "#cbd5e0",
+            padding: 0.1,
+            boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
           }
         }
       }} arrow title={<Card>{eventCardInformation(event)}</Card>}>{renderInnerContent(arg)}</Tooltip>
@@ -190,6 +196,7 @@ const Calendar = ({
       weekends={true}
       nowIndicator={true}
       events={events} // alternatively, use the `events` setting to fetch from a feed
+      eventColor={COLORS.primaryColor}
       select={handleDateSelect}
       // eventContent={renderEventContent} // custom render function
       eventClick={handleEventClick}
@@ -197,6 +204,7 @@ const Calendar = ({
       slotDuration='00:20'
       // eventMouseEnter={toolTipEventInfo}
       eventContent={toolTipEventInfo}
+      progressiveEventRendering={true}
     // eventsSet={handleEvents} // called after events are initialized/added/changed/removed
     /* you can update a remote database when these fire:
       eventAdd={function(){}}
